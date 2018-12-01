@@ -446,6 +446,6 @@ firmware version velocity values can be wrong.
 
 
 ## Report a Bug
-Any bugs, issues or suggestions may be sent to ros@kinovarobotics.com.
+Any bugs, issues or suggestions may be sent to support@kinova.ca
 
 
