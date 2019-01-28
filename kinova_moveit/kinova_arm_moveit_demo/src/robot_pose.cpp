@@ -33,8 +33,7 @@ int main(int argc, char** argv){
     joint_model_group = move_group.getCurrentState()->getJointModelGroup(PLANNING_GROUP);
 
     //gets actual end_effector position
-    geometry_msgs::PoseStamped now_frame;
-    now_frame = move_group.getCurrentPose();
+    geometry_msgs::PoseStamped now_frame = move_group.getCurrentPose();
 
     //pose Goal
     planning_interface::MotionPlanRequest req;
@@ -49,25 +48,24 @@ int main(int argc, char** argv){
 
     move_group.setPoseTarget(goal); 
 
-    //std::vector<double> tolerance_pose(3, 0.01);
-    //std::vector<double> tolerance_angle(3, 0.01);
+    std::vector<double> tolerance_pose(3, 0.01);
+    std::vector<double> tolerance_angle(3, 0.01);
 
     moveit::planning_interface::MoveGroupInterface::Plan my_plan;
 
     bool success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
 
-    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
+    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "SUCESS" : "FAILED");
 
     move_group.move();
 
-    now_frame = move_group.getCurrentPose();
+  now_frame = move_group.getCurrentPose();
     x = now_frame.pose.position.x;
     y = now_frame.pose.position.y;
     z = now_frame.pose.position.z;
-    w = now_frame.pose.orientation.w;
+    w = now_frame.pose.orientation.w; 
 
-    ROS_INFO("Actual end-effector position is: \n x = %f, y = %f, z= %f, w= %f", x, y, z, w);
-
+    ROS_INFO("Actual end-effector position is: \n x = %f, y = %f, z= %f, w= %f", x, y, z, w);  
 
 
     return 0;   

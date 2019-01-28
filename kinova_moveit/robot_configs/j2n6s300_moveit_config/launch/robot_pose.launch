@@ -1,8 +1,4 @@
 <launch>
-
-  <!-- By default, we are not in debug mode -->
-  <arg name="debug" default="false" />
-
   <!-- Position Coordinates -->
   <arg name="x"/>
   <param name="x" value="$(arg x)"/>
@@ -16,13 +12,9 @@
   <arg name="w"/>
   <param name="w" value="$(arg w)"/>
 
-  <!-- GDB Debug Option -->
-  <arg unless="$(arg debug)" name="launch_prefix" value="" />
-  <arg     if="$(arg debug)" name="launch_prefix"
-     value="gdb -x $(find panda_moveit_config)/launch/gdb_settings.gdb --ex run --args" />
-
-  <node name="robot_pose" pkg="kinova_arm_moveit_demo" type="robot_pose" respawn="false" launch-prefix="$(arg launch_prefix)" output="screen"
+  <node name="robot_pose" pkg="kinova_arm_moveit_demo" type="robot_pose" respawn="false" output="screen"
   args="x, y, z">
+  <remap from="/joint_states" to="/j2n6s300/joint_states" />
   </node>
 
 </launch>
