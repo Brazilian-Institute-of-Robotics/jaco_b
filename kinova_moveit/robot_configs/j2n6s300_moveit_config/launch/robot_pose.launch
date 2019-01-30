@@ -1,4 +1,6 @@
 <launch>
+
+  <include file="$(find j2n6s300_moveit_config)/launch/planning_context.launch" />
   <!-- Position Coordinates -->
   <arg name="x"/>
   <param name="x" value="$(arg x)"/>

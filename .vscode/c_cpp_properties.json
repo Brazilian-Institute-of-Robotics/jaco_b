@@ -22,7 +22,8 @@
                 "/home/baymax/catkin_ws/src/geometry2/tf2_ros/include",
                 "/home/baymax/catkin_ws/src/geometry2/tf2_sensor_msgs/include",
                 "/usr/include",
-                "/usr/include/eigen3"
+                "/usr/include/eigen3",
+                "/opt/ros/kinetic/include/moveit/collision_detection/allvalid"
             ],
             "name": "Linux",
             "intelliSenseMode": "gcc-x64",
