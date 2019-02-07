@@ -1,3 +1,6 @@
+# jaco_b
+development platform for assimilation of robotic concepts
+
 ros-jaco-arm
 ============
 
