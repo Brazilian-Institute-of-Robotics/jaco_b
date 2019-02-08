@@ -1,0 +1,6 @@
+[submodule "kinova-ros-beta"]
+	path = kinova-ros-beta
+	url = https://github.com/caioaamaral/kinova-ros/tree/kinova-ros-beta
+[submodule "kinova-ros"]
+	path = kinova-ros
+	url = https://github.com/caioaamaral/kinova-ros
