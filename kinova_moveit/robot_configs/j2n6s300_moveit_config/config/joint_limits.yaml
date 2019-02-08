@@ -8,10 +8,13 @@ joint_limits:
     has_acceleration_limits: false
     max_acceleration: 0
   j2n6s300_joint_2:
+    has_position_limits: true
     has_velocity_limits: true
     max_velocity: 0.35
     has_acceleration_limits: false
     max_acceleration: 0
+    min_position: 1.0
+    max_position: 4.0   
   j2n6s300_joint_3:
     has_velocity_limits: true
     max_velocity: 0.35

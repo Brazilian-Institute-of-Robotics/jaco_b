@@ -18,6 +18,10 @@
 
 
   <xacro:include filename="$(find kinova_description)/urdf/j2n6s300.xacro"/>
+     
+  <xacro:property name="camera_link" value="0.05" />
+  <xacro:property name="height_camera" value="0.157"/>
+  <xacro:property name="axel_offset" value="0.05"/>
 
   <link name="root">
     <visual>
@@ -48,5 +52,36 @@
   <xacro:property name="robot_root" value="root" />
 
   <xacro:j2n6s300  base_parent="${robot_root}"/>
+
+  <!-- for camera sensor -->
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="${camera_link} 0 ${height_camera - axel_offset*2}" rpy="0 0 0"/>
+    <parent link="j2n6s300_link_6"/>
+    <child link="camera_link"/>
+  </joint>
+
+  <link name="camera_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="${camera_link} ${camera_link} ${camera_link}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="${camera_link} ${camera_link} ${camera_link}"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
 
 </robot>
