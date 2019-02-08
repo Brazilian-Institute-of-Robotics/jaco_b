@@ -102,34 +102,6 @@ int main(int argc, char** argv){
     namespace rvt = rviz_visual_tools;
     moveit_visual_tools::MoveItVisualTools visual_tools(move_group.getPlanningFrame());
     visual_tools.trigger();
-
-//------------------------------------------------------------ Check Joint Limits --------------------------------------------------------
-    std::size_t attempts = 10;
-    double timeout = 0.1;
-    std::vector<double> joint_values;
-    const robot_state::JointModelGroup* joint_model_group = robot_model->getJointModelGroup(PLANNING_GROUP);
-    const std::vector<std::string>& joint_names = joint_model_group->getVariableNames();
-
-    robot_state::RobotStatePtr robot_state(new robot_state::RobotState(robot_model));
-    bool found_ik = robot_state->setFromIK(joint_model_group, goal, attempts, timeout);
-
-    if (found_ik)
-    {
-       robot_state->copyJointGroupPositions(joint_model_group, joint_values);
-        for (std::size_t i = 0; i < joint_names.size(); ++i)
-        {
-        ROS_INFO("Joint %s: %f", joint_names[i].c_str(), joint_values[i]);
-        }
-    }
-    else
-    {
-    ROS_INFO("Did not find IK solution");
-    }
-    
-    robot_state->setJointGroupPositions(joint_model_group, joint_values);
-
-    /* Check whether any joint is outside its joint limits */
-    ROS_INFO_STREAM("Current state is " << (robot_state->satisfiesBounds() ? "valid" : "not valid"));
     
 //----------------------------------------------------------------- Plan Path -------------------------------------------------------------
     //compute the plan path
