@@ -11,6 +11,7 @@ find_package(catkin REQUIRED
              moveit_core
              moveit_ros_planning
              moveit_ros_planning_interface
+             moveit_visual_tools
              pluginlib
              cmake_modules
              geometric_shapes
@@ -62,6 +63,10 @@ install(TARGETS test_accuracy DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 add_executable(robot_pose src/robot_pose.cpp)
 target_link_libraries(robot_pose ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${kinova_driver_LIBRARIES})
 install(TARGETS robot_pose DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+add_executable(teste_joint src/teste_joint.cpp)
+target_link_libraries(teste_joint ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${kinova_driver_LIBRARIES})
+install(TARGETS teste_joint DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 #get_cmake_property(_variableNames VARIABLES)
 #foreach (_variableName ${_variableNames})

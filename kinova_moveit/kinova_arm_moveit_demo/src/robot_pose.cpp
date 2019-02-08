@@ -18,6 +18,7 @@ int main(int argc, char** argv){
     std::vector<double> joint_positions;
     collision_detection::CollisionRequest collision_req;
     collision_detection::CollisionResult collision_res;
+    moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
 
     //get goal as parameters from launch file
     double X, Y, Z, W;
@@ -52,61 +53,95 @@ int main(int argc, char** argv){
     //print actual end-effector position
     const Eigen::Affine3d& end_effector_state = current_state.getGlobalLinkTransform("j2n6s300_end_effector");
     ROS_INFO_STREAM("Translation: \n" << end_effector_state.translation() << "\n");
+    
+    //set goal position coordinates
+    geometry_msgs::Pose goal;
+    goal.position.x = X;
+    goal.position.y = Y;
+    goal.position.z = Z;
+    goal.orientation.w = W;
 
-    //IK
-    unsigned int attempts = 11;
-    double timeout = 0.3;
-    const robot_model::JointModelGroup* joint_model_group = current_state.getJointModelGroup("arm");
+    move_group.setPoseTarget(goal); 
+
+    //specify tolerances [x, y, z] -> [0.01, 0.01, 0.01]
+    move_group.setGoalPositionTolerance(0.001);
+    move_group.setGoalOrientationTolerance(0.001);
+
+//----------------------------------------------- add ground collision --------------------------------------------------------
+    //collision object declaration
+    moveit_msgs::CollisionObject plane;
+    plane.id = "plane";
+    plane.header.frame_id = move_group.getPlanningFrame();
+ 
+    //primitive especification
+    shape_msgs::SolidPrimitive plane_primitive;
+    plane_primitive.type = plane_primitive.BOX;
+    plane_primitive.dimensions.resize(3);
+    plane_primitive.dimensions[0] = 3.0;
+    plane_primitive.dimensions[1] = 3.0;
+    plane_primitive.dimensions[2] = 0.0;
+
+
+    //object position especification
+    geometry_msgs::Pose plane_pose;
+    plane_pose.orientation.w = 1.0;
+    plane_pose.position.x = 0.0;
+    plane_pose.position.y = 0.0;
+    plane_pose.position.z = 0.0;
+
+    plane.primitives.push_back(plane_primitive);
+    plane.primitive_poses.push_back(plane_pose);
+    plane.operation = plane.ADD;
+
+    std::vector<moveit_msgs::CollisionObject> collision_objects;
+    collision_objects.push_back(plane);
+
+    //add collision object into planning_scene
+    planning_scene_interface.addCollisionObjects(collision_objects);
+
+    namespace rvt = rviz_visual_tools;
+    moveit_visual_tools::MoveItVisualTools visual_tools(move_group.getPlanningFrame());
+    visual_tools.trigger();
+
+//------------------------------------------------------------ Check Joint Limits --------------------------------------------------------
+    std::size_t attempts = 10;
+    double timeout = 0.1;
+    std::vector<double> joint_values;
+    const robot_state::JointModelGroup* joint_model_group = robot_model->getJointModelGroup(PLANNING_GROUP);
     const std::vector<std::string>& joint_names = joint_model_group->getVariableNames();
 
-    geometry_msgs::Pose pose;
-    pose.position.x = X;
-    pose.position.y = Y;
-    pose.position.z = Z;
-    pose.orientation.w = W;
+    robot_state::RobotStatePtr robot_state(new robot_state::RobotState(robot_model));
+    bool found_ik = robot_state->setFromIK(joint_model_group, goal, attempts, timeout);
 
-    bool found_ik = current_state.setFromIK(joint_model_group, pose, "j2n6s300_end_effector", attempts, timeout);
-    if(found_ik){
-        current_state.copyJointGroupPositions(joint_model_group, joint_positions);
+    if (found_ik)
+    {
+       robot_state->copyJointGroupPositions(joint_model_group, joint_values);
         for (std::size_t i = 0; i < joint_names.size(); ++i)
         {
-            ROS_INFO("Joint %s: %f", joint_names[i].c_str(), joint_positions[i]);
+        ROS_INFO("Joint %s: %f", joint_names[i].c_str(), joint_values[i]);
         }
     }
-
-    //collision_detection
-    planning_scene.checkSelfCollision(collision_req, collision_res, current_state);
-    ROS_INFO_STREAM( (collision_res.collision ? "is in self collision" : "") );
-    if(!collision_res.collision){
-
-        //get actual end_effector position
-        now_frame = move_group.getCurrentPose();
+    else
+    {
+    ROS_INFO("Did not find IK solution");
+    }
     
-        //set goal position coordinates
-        geometry_msgs::PoseStamped goal;
-        goal.header.frame_id = "root";
-        goal.pose.position.x = X;
-        goal.pose.position.y = Y;
-        goal.pose.position.z = Z;
-        goal.pose.orientation.w = W;
+    robot_state->setJointGroupPositions(joint_model_group, joint_values);
 
-        move_group.setPoseTarget(goal); 
+    /* Check whether any joint is outside its joint limits */
+    ROS_INFO_STREAM("Current state is " << (robot_state->satisfiesBounds() ? "valid" : "not valid"));
+    
+//----------------------------------------------------------------- Plan Path -------------------------------------------------------------
+    //compute the plan path
+    moveit::planning_interface::MoveGroupInterface::Plan my_plan;
+    bool success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "SUCESS" : "FAILED");
 
-        //specify tolerances [x, y, z] -> [0.01, 0.01, 0.01]
-        move_group.setGoalPositionTolerance(0.001);
-        move_group.setGoalOrientationTolerance(0.001);
-
-        //compute the plan path
-        moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-        bool success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-        ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "SUCESS" : "FAILED");
-
-        if(success == true){
+    if(success == true){
             sleep(5.0);
 
             //execute the trajectory
             move_group.move();
-        }
     }
 
 
