@@ -21,7 +21,13 @@
                 "/home/baymax/catkin_ws/src/geometry2/tf2_msgs/include",
                 "/home/baymax/catkin_ws/src/geometry2/tf2_ros/include",
                 "/home/baymax/catkin_ws/src/geometry2/tf2_sensor_msgs/include",
+<<<<<<< HEAD
                 "/usr/include"
+=======
+                "/usr/include",
+                "/usr/include/eigen3",
+                "/opt/ros/kinetic/include/moveit/collision_detection/allvalid"
+>>>>>>> iss03
             ],
             "name": "Linux",
             "intelliSenseMode": "gcc-x64",
