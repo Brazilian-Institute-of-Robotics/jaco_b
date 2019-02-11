@@ -24,20 +24,31 @@ void shutdowAlarm(const ros::TimerEvent&){
 int main(int argc, char** argv){
     ros::init(argc, argv, "joy_interface");
     ros::NodeHandle nh;
+    std::string kinova_robotType;
+    std::string robot_namespace;
+    if (nh.getParam("kinova_robotType", kinova_robotType) ){
+        ROS_INFO("PARAM WAS DETECTED");
+        robot_namespace = kinova_robotType;
+        ROS_INFO_STREAM("name is: " <<  kinova_robotType);
+        ROS_INFO_STREAM(kinova_robotType + "/joint_1_position_controller/command");
+    }
+    else{
+        ROS_INFO("PARAM WAS NOT DETECTED");
+    }
 
     //Here I'm getting joy output and making it a joint_controller input 
-    ros::Publisher joint_1 = nh.advertise<std_msgs::Float64>("j2n6s300/joint_1_position_controller/command", 1000);
-    ros::Publisher joint_2 = nh.advertise<std_msgs::Float64>("j2n6s300/joint_2_position_controller/command", 1000);
-    ros::Publisher joint_3 = nh.advertise<std_msgs::Float64>("j2n6s300/joint_3_position_controller/command", 1000);
-    ros::Publisher joint_4 = nh.advertise<std_msgs::Float64>("j2n6s300/joint_4_position_controller/command", 1000);
-    ros::Publisher joint_5 = nh.advertise<std_msgs::Float64>("j2n6s300/joint_5_position_controller/command", 1000);
-    ros::Publisher joint_6 = nh.advertise<std_msgs::Float64>("j2n6s300/joint_6_position_controller/command", 1000);
+    ros::Publisher joint_1 = nh.advertise<std_msgs::Float64>(kinova_robotType + "/joint_1_position_controller/command", 1000);
+    ros::Publisher joint_2 = nh.advertise<std_msgs::Float64>(kinova_robotType + "/joint_2_position_controller/command", 1000);
+    ros::Publisher joint_3 = nh.advertise<std_msgs::Float64>(kinova_robotType + "/joint_3_position_controller/command", 1000);
+    ros::Publisher joint_4 = nh.advertise<std_msgs::Float64>(kinova_robotType + "/joint_4_position_controller/command", 1000);
+    ros::Publisher joint_5 = nh.advertise<std_msgs::Float64>(kinova_robotType + "/joint_5_position_controller/command", 1000);
+    ros::Publisher joint_6 = nh.advertise<std_msgs::Float64>(kinova_robotType + "/joint_6_position_controller/command", 1000);
 
-    ros::Publisher finger_1 = nh.advertise<std_msgs::Float64>("j2n6s300/finger_1_position_controller/command", 1000);
-    ros::Publisher finger_2 = nh.advertise<std_msgs::Float64>("j2n6s300/finger_2_position_controller/command", 1000);
-    ros::Publisher finger_3 = nh.advertise<std_msgs::Float64>("j2n6s300/finger_3_position_controller/command", 1000);
+    ros::Publisher finger_1 = nh.advertise<std_msgs::Float64>(kinova_robotType + "/finger_1_position_controller/command", 1000);
+    ros::Publisher finger_2 = nh.advertise<std_msgs::Float64>(kinova_robotType + "/finger_2_position_controller/command", 1000);
+    ros::Publisher finger_3 = nh.advertise<std_msgs::Float64>(kinova_robotType + "/finger_3_position_controller/command", 1000);
 
-    ros::Subscriber state = nh.subscribe("j2n6s300/joint_states", 1000, jointState);
+    ros::Subscriber state = nh.subscribe(kinova_robotType + "/joint_states", 1000, jointState);
 
     ros::Timer timer = nh.createTimer(ros::Duration(2.0), shutdowAlarm);
 
