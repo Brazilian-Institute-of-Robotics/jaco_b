@@ -44,6 +44,9 @@ kvh_driver/src/kvh_driver/
 *.swp
 *.swo
 
+# Vscode files
+.vscode
+
 # Qt Creator CMakeLists user file
 *CMakeLists.txt.user
 
@@ -52,3 +55,4 @@ kvh_driver/src/kvh_driver/
 
 # Python
 *.pyc
+
