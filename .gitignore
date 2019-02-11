@@ -45,7 +45,7 @@ kvh_driver/src/kvh_driver/
 *.swo
 
 # Vscode files
-.vscode
+/.vscode
 
 # Qt Creator CMakeLists user file
 *CMakeLists.txt.user
