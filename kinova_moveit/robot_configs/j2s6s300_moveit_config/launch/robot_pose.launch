@@ -1,0 +1,22 @@
+<launch>
+
+  <include file="$(find j2s6s300_moveit_config)/launch/planning_context.launch" />
+  <!-- Position Coordinates -->
+  <arg name="x"/>
+  <param name="x" value="$(arg x)"/>
+
+  <arg name="y"/>
+  <param name="y" value="$(arg y)"/>
+
+  <arg name="z"/>
+  <param name="z" value="$(arg z)"/>
+
+  <arg name="w"/>
+  <param name="w" value="$(arg w)"/>
+
+  <node name="robot_pose" pkg="kinova_arm_moveit_demo" type="robot_pose" respawn="false" output="screen"
+  args="x, y, z">
+  <remap from="/joint_states" to="/j2s6s300/joint_states" />
+  </node>
+
+</launch>
