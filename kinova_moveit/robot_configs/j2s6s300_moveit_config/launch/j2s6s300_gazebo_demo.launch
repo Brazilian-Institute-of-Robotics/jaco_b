@@ -22,7 +22,7 @@
   <include file="$(find j2s6s300_moveit_config)/launch/move_group_j2s6s300.launch">
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
-    <arg name="joint_states_ns" value="/j2n6s300/joint_states"/>
+    <arg name="joint_states_ns" value="/j2s6s300/joint_states"/>
   </include>  
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
