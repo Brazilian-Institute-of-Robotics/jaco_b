@@ -10,6 +10,8 @@
 
 #include <moveit_visual_tools/moveit_visual_tools.h>
 
+#include <tf/transform_datatypes.h>
+
 
 int main(int argc, char** argv){
     ros::init(argc, argv, "robot_pose");
@@ -55,18 +57,20 @@ int main(int argc, char** argv){
     ROS_INFO_STREAM("Translation: \n" << end_effector_state.translation() << "\n");
     
     //set goal position coordinates
-    geometry_msgs::Pose goal;
-    goal.position.x = X;
-    goal.position.y = Y;
-    goal.position.z = Z;
-    goal.orientation.w = W;
+    tf::Pose t_goal;
+    t_goal.setOrigin( tf::Vector3(X, Y, Z) );
+    t_goal.setRotation( tf::Quaternion(-0.5832, 0.6325, 0.41627, 0.41628));
 
-    move_group.setPoseTarget(goal); 
+    geometry_msgs::Pose goal;
+
+    tf::poseTFToMsg(t_goal, goal);
+
 
     //specify tolerances [x, y, z] -> [0.01, 0.01, 0.01]
     move_group.setGoalPositionTolerance(0.001);
     move_group.setGoalOrientationTolerance(0.001);
 
+    move_group.setPoseTarget(goal); 
 //----------------------------------------------- add ground collision --------------------------------------------------------
     //collision object declaration
     moveit_msgs::CollisionObject plane;
