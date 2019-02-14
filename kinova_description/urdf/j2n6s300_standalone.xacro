@@ -22,6 +22,7 @@
   <xacro:property name="camera_link" value="0.05" />
   <xacro:property name="height_camera" value="0.157"/>
   <xacro:property name="axel_offset" value="0.05"/>
+  <xacro:property name="camera_mesh" value="Genie_Nano"/>
 
   <link name="root">
     <visual>
@@ -65,14 +66,14 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-    <box size="${camera_link} ${camera_link} ${camera_link}"/>
+        <mesh filename="package://kinova_description/meshes/${camera_mesh}.dae"/>
       </geometry>
     </collision>
 
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707 0 -1.5707"/>
       <geometry>
-    <box size="${camera_link} ${camera_link} ${camera_link}"/>
+        <mesh filename="package://kinova_description/meshes/${camera_mesh}.dae"/>
       </geometry>
       <material name="red"/>
     </visual>
