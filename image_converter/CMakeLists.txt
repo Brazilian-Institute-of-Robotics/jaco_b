@@ -63,10 +63,9 @@ add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}_tutorial
-  #src/draw.cpp
   src/tutorial.cpp
-  #src/image_converter.cpp
   )
+add_executable(mark_detection src/mark_detection.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -84,7 +83,9 @@ set_target_properties(${PROJECT_NAME}_tutorial PROPERTIES OUTPUT_NAME tutorial P
 target_link_libraries(${PROJECT_NAME}_tutorial
     ${catkin_LIBRARIES} ${PROJECT_NAME}
     ${OpenCV_LIBS}
- )
+)
+
+target_link_libraries(mark_detection ${OpenCV_LIBS})
 
 #############
 ## Install ##
