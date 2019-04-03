@@ -44,6 +44,14 @@ link_directories(${catkin_LIBRARY_DIRS})
 
 include_directories(${kinova_driver_INCLUDE_DIRS})
 
+add_library(planning_group_LIBRARIES
+  src/planning_group.cpp
+)
+target_link_libraries(planning_group_LIBRARIES
+  ${catkin_LIBRARIES}  
+)
+add_dependencies(planning_group_LIBRARIES ${catkin_EXPORTED_TARGETS})
+
 add_executable(motion_plan src/motion_plan.cpp)
 target_link_libraries(motion_plan ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${kinova_driver_LIBRARIES})
 install(TARGETS motion_plan DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
@@ -63,6 +71,11 @@ install(TARGETS test_accuracy DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 add_executable(robot_pose src/robot_pose.cpp)
 target_link_libraries(robot_pose ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${kinova_driver_LIBRARIES})
 install(TARGETS robot_pose DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+add_executable(moveto src/moveto.cpp)
+add_dependencies(moveto ${catkin_EXPORTED_TARGETS})
+target_link_libraries(moveto planning_group_LIBRARIES ${catkin_LIBRARIES})
+#install(TARGETS moveto DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 add_executable(teste_joint src/teste_joint.cpp)
 target_link_libraries(teste_joint ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${kinova_driver_LIBRARIES})

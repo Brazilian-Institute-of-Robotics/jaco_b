@@ -50,7 +50,7 @@ int main(int argc, char** argv){
     ROS_INFO_STREAM("Test 1: Current state is " << (collision_res.collision ? "in" : "not in") << " self collision");
 
     //get current robot_state
-    robot_state::RobotState& current_state = planning_scene.getCurrentStateNonConst(); 
+    robot_state::RobotState& current_state = planning_scene.getCurrentStateNonConst();
 
     //print actual end-effector position
     const Eigen::Affine3d& end_effector_state = current_state.getGlobalLinkTransform(move_group.getEndEffectorLink());
@@ -64,7 +64,6 @@ int main(int argc, char** argv){
     geometry_msgs::Pose goal;
 
     tf::poseTFToMsg(t_goal, goal);
-
 
     //specify tolerances [x, y, z] -> [0.01, 0.01, 0.01]
     move_group.setGoalPositionTolerance(0.001);

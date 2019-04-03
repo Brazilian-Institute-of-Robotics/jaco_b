@@ -11,10 +11,7 @@
   <arg name="z"/>
   <param name="z" value="$(arg z)"/>
 
-  <arg name="w"/>
-  <param name="w" value="$(arg w)"/>
-
-  <node name="robot_pose" pkg="kinova_arm_moveit_demo" type="robot_pose" respawn="false" output="screen"
+  <node name="robot_pose" pkg="kinova_arm_moveit_demo" type="moveto" respawn="false" output="screen"
   args="x, y, z">
   <remap from="/joint_states" to="/j2s6s300/joint_states" />
   </node>
