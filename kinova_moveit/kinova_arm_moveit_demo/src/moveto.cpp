@@ -6,23 +6,18 @@ int main(int argc,char** argv){
     ros::AsyncSpinner spinner(1);
     spinner.start();
 
-    tf::Pose t_goal;
-    t_goal.setOrigin( tf::Vector3(-2.3, 0.6, 0.8) );
-    t_goal.setRotation( tf::Quaternion(-0.5832, 0.6325, 0.41627, 0.41628));
+    double x, y, z;
+    x = atof(argv[1]);
+    y = atof(argv[2]);
+    z = atof(argv[3]);
 
-    geometry_msgs::Pose goal;
-    tf::poseTFToMsg(t_goal, goal);
     PlanningGroup pgroup("arm");
+
+    pgroup.actualizeEFPosition();
     pgroup.printEFPose();
-            ROS_INFO("here1");
+    pgroup.setGoalPosition(x,y, z);
 
-    //pgroup.moveTo(goal);
-    //pgroup.actualizeEFPosition();
-    pgroup.setGoal(goal);
-            ROS_INFO("here2");
-
+    pgroup.moveTo(x,y,z);
+    pgroup.actualizeEFPosition();
     pgroup.printEFPose();
-
-    //ROS_INFO("existing");
-
 }

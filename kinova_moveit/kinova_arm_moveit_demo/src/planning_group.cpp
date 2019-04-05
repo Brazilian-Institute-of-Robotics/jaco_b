@@ -1,15 +1,16 @@
 #include <planning_group.h>
+#include <memory>
 
-PlanningGroup::PlanningGroup(std::string name) : _group_name(name)
+PlanningGroup::PlanningGroup(std::string name) : _group_name(name),
                                                 //_robot_state(new robot_state::RobotState(_robot_model))
-                                                //_move_group(new moveit::planning_interface::MoveGroupInterface(_group_name))
+                                                //move_group(new moveit::planning_interface::MoveGroupInterface(_group_name))
+                                                _move_group (std::make_shared<moveit::planning_interface::MoveGroupInterface>(_group_name))
                                                 { 
     setRobotModel();
     setPlanningScene();
 
-    //_move_group->setGoalPositionTolerance(0.001);
-    //_move_group->setGoalOrientationTolerance(0.001);
-            ROS_INFO("existing");
+    _move_group->setGoalPositionTolerance(0.001);
+    _move_group->setGoalOrientationTolerance(0.001);
 
 }
 
@@ -40,6 +41,14 @@ void PlanningGroup::moveTo(geometry_msgs::Pose goal){
     }
 }
 
+void PlanningGroup::moveTo(double x, double y, double z){
+    tf::Pose t_goal;
+    t_goal.setOrigin( tf::Vector3(x, y, z) );
+    t_goal.setRotation( tf::Quaternion(-0.5832, 0.6325, 0.29265, 0.41628));
+    tf::poseTFToMsg(t_goal, _goal);
+    moveTo(_goal);
+}
+
 void PlanningGroup::printEFPose(){
     double x = _ef_position.pose.position.x;
     double y = _ef_position.pose.position.y;
@@ -49,8 +58,24 @@ void PlanningGroup::printEFPose(){
     ROS_INFO("Actual end-effector position is: \n x = %f, y = %f, z= %f, w= %f", x, y, z, w);
 }
 
+std::string PlanningGroup::getGroupName(){
+    return _group_name;
+}
+
+std::string PlanningGroup::getPlanningFrame(){
+    return _move_group->getPlanningFrame();
+}
+
 void PlanningGroup::setGoal(geometry_msgs::Pose goal){
     _move_group->setPoseTarget(goal); 
+}
+
+void PlanningGroup::setGoalPosition(double x, double y, double z ){
+    tf::Pose t_goal;
+    t_goal.setOrigin( tf::Vector3(x, y, z) );
+    t_goal.setRotation( tf::Quaternion(-0.5832, 0.6325, 0.29265, 0.41628));
+
+    tf::poseTFToMsg(t_goal, _goal);
 }
 
 void PlanningGroup::setRobotModel(){

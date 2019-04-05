@@ -8,14 +8,10 @@
 #include <moveit_msgs/DisplayRobotState.h>
 #include <moveit_msgs/DisplayTrajectory.h>
 
-#include <moveit_msgs/AttachedCollisionObject.h>
-#include <moveit_msgs/CollisionObject.h>
 
 #include <moveit_visual_tools/moveit_visual_tools.h>
 
 #include <tf/transform_datatypes.h>
-
-
 
 
 class PlanningGroup {
@@ -26,7 +22,10 @@ class PlanningGroup {
     void checkSelfCollision();
     bool checkGoal(geometry_msgs::Pose goal);
     void moveTo(geometry_msgs::Pose goal);
+    void moveTo(double x, double y, double z);
     void printEFPose();
+    std::string getGroupName();
+    std::string getPlanningFrame();
     void setRobotModel();
     void setRobotState();
     void setPlanningScene();
@@ -37,13 +36,14 @@ class PlanningGroup {
     void setGoalOrientation(double r, double p, double y);
     void setGoalOrientation(tf::Quaternion q);
 
+    geometry_msgs::Pose _goal;
+
     private:
 
     std::string _group_name;
     std::vector<double> _joint_positions;
     geometry_msgs::PoseStamped _ef_position;
-    geometry_msgs::Pose _goal;
-    moveit::planning_interface::MoveGroupInterface* _move_group; //todo change all raw pointers to shared_ptr
+    std::shared_ptr<moveit::planning_interface::MoveGroupInterface> _move_group;
     robot_model::RobotModelPtr _robot_model;
     robot_state::RobotStatePtr _robot_state;
     planning_scene::PlanningScene* _planning_scene;
