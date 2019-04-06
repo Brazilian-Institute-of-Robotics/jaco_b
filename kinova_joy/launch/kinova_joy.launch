@@ -1,6 +1,0 @@
-<launch>
-
-    <node name="joy_node" pkg="joy" type="joy_node"/>
-    <node name="joy_interface" pkg="kinova_joy" type="joy_interface" output="screen"/>
-    <node name="joy_hposition" pkg="kinova_joy" type="joy_hposition" output="screen"/>
-</launch>
