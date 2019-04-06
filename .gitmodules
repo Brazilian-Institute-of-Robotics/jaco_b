@@ -1,3 +1,0 @@
-[submodule "apriltags2_ros"]
-	path = apriltags2_ros
-	url = https://github.com/dmalyuta/apriltags2_ros
