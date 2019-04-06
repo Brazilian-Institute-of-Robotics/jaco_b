@@ -1,0 +1,3 @@
+[submodule "jaco_b"]
+	path = jaco_b
+	url = https://github.com/Brazilian-Institute-of-Robotics/jaco_b
