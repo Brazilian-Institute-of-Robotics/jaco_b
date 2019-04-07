@@ -68,6 +68,8 @@ catkin config
 catkin init
 git clone https://github.com/Brazilian-Institute-of-Robotics/jaco_b src
 catkin build
+cd ~/catkin_ws/src/kinova-ros
+git checkout kinova-bir
 ```
 
 # How to use
