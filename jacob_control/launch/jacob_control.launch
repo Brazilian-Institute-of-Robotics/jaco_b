@@ -1,0 +1,7 @@
+<!--NOT USING IT -->
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find kinova_control)/launch/kinova_control.launch">
+        <arg name="kinova_robotType" value="j2s6s300"/>
+    </include>
+</launch>

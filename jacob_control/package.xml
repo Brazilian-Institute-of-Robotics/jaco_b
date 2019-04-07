@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <name>jacob_control</name>
+  <version>0.0.0</version>
+  <description>The kinova_control package</description>
+
+  <maintainer email="soli@kinova.ca">Siddharth Oli</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">https://github.com/Kinovarobotics/kinova-ros</url>
+  <url type="repository">https://github.com/Kinovarobotics/kinova-ros</url>
+
+  <author email="davetcoleman@gmail.com">Dave Coleman</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+
+
+  <export>
+  </export>
+
+</package>
