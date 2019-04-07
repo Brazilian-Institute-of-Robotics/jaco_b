@@ -10,6 +10,7 @@ This is a ROS stack for controlling the [Kinova Jaco 2](https://www.kinovaroboti
 
 # Table of Contents
 - [Important](#important)
+- [Instalation](#instalation)
 - [How to use](#how-to-use)
 	- [Gazebo spawn](#gazebo-spawn)
 - [Kinova-ROS](#kinova-ros)
@@ -57,6 +58,17 @@ This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/
 
 #### Todo:
 - Moveit! support
+
+# Instalation
+```
+cd ~/
+mkdir catkin_ws
+cd ~/catkin_ws/
+catkin config
+catkin init
+git clone https://github.com/Brazilian-Institute-of-Robotics/jaco_b src
+catkin build
+```
 
 # How to use
 ## Gazebo spawn
