@@ -59,7 +59,7 @@ This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/
 #### Todo:
 - Moveit! support
 
-# Instalation
+# Installation
 ```
 cd ~/
 mkdir catkin_ws
