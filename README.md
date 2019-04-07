@@ -1,6 +1,6 @@
 # Jaco_b 
 
-This is a ROS stack for controlling the Kinova Jaco 2 manipulator with spherical wrist.
+This is a ROS stack for controlling the [Kinova Jaco 2](https://www.kinovarobotics.com/en/products/assistive-technologies/kinova-jaco-assistive-robotic-arm) manipulator with spherical wrist.
 
 **Authors**: Caio Amaral  
 **Maintainer**: Caio Amaral, caio.amaral@fbter.org.br  
@@ -8,10 +8,10 @@ This is a ROS stack for controlling the Kinova Jaco 2 manipulator with spherical
 
 **Release**: 1.0
 
-=======
 # Table of Contents
 - [Important](#important)
 - [How to use](#how-to-use)
+	- [Gazebo spawn](#gazebo-spawn)
 - [Kinova-ROS](#kinova-ros)
   - [Supported versions](#supported-versions)
   - [Gazebo](#gazebo)
@@ -41,25 +41,25 @@ This is a ROS stack for controlling the Kinova Jaco 2 manipulator with spherical
 
 This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/kinova-ros) and [apriltags2_ros](https://github.com/dmalyuta/apriltags2_ros) 
 
-#### Configurations Available
+## Configurations Available
 - j2s6s300 (**Jaco_2 w/ spherical joint**), also know as **Jaco_b**.
 
-#### File system
+## File system
 - `jacob_control`: all ros_controllers parameters (ex: PID)
 - `jacob_gazebo`: all essential files that gives jacob gazebo support
 
-#### New in release 1.0
-New Features:
-- **Gazebo support**
+## New in release 1.0
+### New Features:
+#### 1. Gazebo support
 - `j2s6s300`(**Jaco_b**) gazebo spawner launch file
 - PID controller parameters for **Jaco_b**
 - set home_position at spawner time 
 
-Todo:
+### Todo:
 - Moveit! support
 
 # How to use
-### Gazebo spawn
+## Gazebo spawn
 Use `roslaunch jacob_gazebo robot_launch.launch`. Note that it's configurate to spawn `j2s6s300` Kinova Jaco version.
 
 # Kinova-ROS
