@@ -1,6 +1,6 @@
 # Jaco_b 
 
-This is a ROS stack for controlling **Jacob**, a [Kinova Jaco 2](https://www.kinovarobotics.com/en/products/assistive-technologies/kinova-jaco-assistive-robotic-arm) manipulator with spherical wrist.
+This is a ROS stack for controlling **Jacob**, a [Kinova Jaco 2](https://www.kinovarobotics.com/en/products/assistive-technologies/kinova-jaco-assistive-robotic-arm) manipulator with spherical wrist used at Brazilian Institute of Robotics for academic purposes and understanding of robotics concepts (eg. path generation, quaternions, etc.).
 
 **Authors**: [Caio Amaral](https://github.com/caioaamaral)  
 **Maintainer**: Caio Amaral, caio.amaral@fbter.org.br  
