@@ -3,6 +3,7 @@ ROS stack for controlling the Kinova Jaco2 manipulator
 =======
 # Table of Contents
 - [Important](#important)
+- [How to use](#how-to-use)
 - [Kinova-ROS](#kinova-ros)
   - [Supported versions](#supported-versions)
   - [Gazebo](#gazebo)
@@ -45,6 +46,12 @@ New Features:
 Todo:
 - Moveit! support
 
+# How to use
+
+# Kinova-ROS
+
+The `kinova-ros` stack provides a ROS interface for the Kinova Robotics JACO, JACO2 and MICO robotic manipulator arms, and it is built to support further kinova products as well. Besides wide support of Kinova products, there are many bug fixes, improvements and new features as well. The stack is developed above the Kinova C++ API functions, which communicate with the DSP inside robot base. 
+
 #### New in release 1.2.0
 - Gazebo support
 - MoveIt! support
@@ -67,10 +74,6 @@ Todo:
   - AddPoseToCartesianTrajectory
   - ClearTrajectories
   - SetTorqueControlMode
-
-# Kinova-ROS
-
-The `kinova-ros` stack provides a ROS interface for the Kinova Robotics JACO, JACO2 and MICO robotic manipulator arms, and it is built to support further kinova products as well. Besides wide support of Kinova products, there are many bug fixes, improvements and new features as well. The stack is developed above the Kinova C++ API functions, which communicate with the DSP inside robot base. 
 
 ## Supported versions
 The recommended configuration is ROS Indigo with 64 bit Ubuntu 14.04.
