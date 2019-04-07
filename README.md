@@ -1,5 +1,5 @@
 
-Set of ROS packages for controlling the Kinova Jaco armSet of ROS packages for controlling the Kinova Jaco arm
+ROS stack for controlling the Kinova Jaco2 manipulator
 =======
 # Table of Contents
 - [Important](#important)
@@ -30,29 +30,20 @@ Set of ROS packages for controlling the Kinova Jaco armSet of ROS packages for c
 
 # Important
 
-kinova-driver release 1.2.1.
-
-For quicker bug-fixes and updates a beta version of the branch has been added. Use this if you would like to use the latest code.
-To contribute fixes please add pull requests to this beta branch.
-
-The previous ROS release, which mainly developed for jaco arm will be named as **jaco-ros** and the previous **master** branch is renamed as **jaco-ros-master** branch. Users can keep both **jaco-ros** and new release **kinova-ros** as two parallel stacks. However, further updates and support will only be available on "kinova-ros".
+jaco_b release 1.0
+#### Configurations Available
+- j2s6s300(**Jaco_2 w/ spherical joint**)
 
 =======
-#### New in release 1.2.1
-A few bug fixes:
+#### New in release 1.0
+New Features:
+- **Gazebo support**
+- j2s6s300(**Jaco_2 w/ spherical joint**) gazebo spawner launch file
+- PID controller parameters for j2s6s300
+- set home_position at spawner time 
 
-Specific to 7 dof robot:
-- PID controller parameters for the 7 dof robot with spherical wrist (before, the Gazebo model was unstable when launched)
-- addition of an is7dof argument in kinova_gazebo/launch/robot_launch.launch and kinova_control/launch/kinova_control.launch to load joint_7_position_controller in addition to other position_controllers when launching the gazebo model with use_trajectory_controller set to false and a 7 dof robot. This argument has to be set to true for a 7 dof robot. 
-- correction in kinova_control/launch/j2s7s300.perspective (rqt tool was publishing to wrong topic)
-
-Specific to MICO robot:
-- correction in kinova_control/launch/m1n6s200.perspective (rqt tool was publishing to wrong topic)
-
-For all robots:
-- fix in home_arm service (before, was not working when robot was connected through Ethernet)
-- commented out the COM parameters all set to zero in kinova_bringup/launch/config/robot_parameters.yaml, or else the robot does not compensate gravity accurately when switched to admittance or torque mode. These COM parameters can be commented out if the user wants to change the default COM parameters, but by default, we take for granted that the user wants to use the parameters already implemented in the robot.
-- change the order conditions are checked in the kinova_joint_angles_action.cpp, kinova_tool_pose_action.cpp and kinova_fingers_action.cpp to ensure that the robot does not accept new goals after having been stopped (emergency stop). See issue #92 for more details. 
+Todo:
+- Moveit! support
 
 #### New in release 1.2.0
 - Gazebo support
@@ -87,7 +78,7 @@ The recommended configuration is ROS Indigo with 64 bit Ubuntu 14.04.
 The package may work with other configurations as well, but it has only been tested for the one recommended above. 
 
 ## Gazebo 
-#### New in release 1.2.0
+#### New in release 1.0
 The wiki page for Gazebo is available [here](https://github.com/Kinovarobotics/kinova-ros/wiki/Gazebo)
 
 ## MoveIt!
