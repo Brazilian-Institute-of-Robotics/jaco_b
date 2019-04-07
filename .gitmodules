@@ -1,0 +1,6 @@
+[submodule "kinova-ros"]
+	path = kinova-ros
+	url = https://github.com/Brazilian-Institute-of-Robotics/jaco_b
+[submodule "apriltags2_ros"]
+	path = apriltags2_ros
+	url = https://github.com/dmalyuta/apriltags2_ros
