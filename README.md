@@ -49,7 +49,7 @@ This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/
 - `jacob_control`: all ros_controllers parameters (ex: PID)
 - `jacob_gazebo`: all essential files that gives jacob gazebo support
 
-### 3. New in release 1.0
+### 3. News in release 1.0
 #### New Features:
 - **Gazebo support**
 - `j2s6s300`(**Jaco_b**) gazebo spawner launch file
