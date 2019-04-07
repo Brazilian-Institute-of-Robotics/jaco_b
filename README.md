@@ -2,9 +2,9 @@
 
 This is a ROS stack for controlling the [Kinova Jaco 2](https://www.kinovarobotics.com/en/products/assistive-technologies/kinova-jaco-assistive-robotic-arm) manipulator with spherical wrist.
 
-**Authors**: Caio Amaral  
+**Authors**: [Caio Amaral](https://github.com/caioaamaral)  
 **Maintainer**: Caio Amaral, caio.amaral@fbter.org.br  
-**Affiliation**: Brazilian Institute of Robotics, Centro Universitário SENAI CIMATEC
+**Affiliation**: [Brazilian Institute of Robotics](https://github.com/Brazilian-Institute-of-Robotics), Centro Universitário SENAI CIMATEC
 
 **Release**: 1.0
 
@@ -41,21 +41,21 @@ This is a ROS stack for controlling the [Kinova Jaco 2](https://www.kinovaroboti
 
 This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/kinova-ros) and [apriltags2_ros](https://github.com/dmalyuta/apriltags2_ros) 
 
-## Configurations Available
+### 1. Configurations Available
 - j2s6s300 (**Jaco_2 w/ spherical joint**), also know as **Jaco_b**.
 
-## File system
+### 2. File system
 - `jacob_control`: all ros_controllers parameters (ex: PID)
 - `jacob_gazebo`: all essential files that gives jacob gazebo support
 
-## New in release 1.0
-### New Features:
-#### 1. Gazebo support
+### 3. New in release 1.0
+#### New Features:
+- **Gazebo support**
 - `j2s6s300`(**Jaco_b**) gazebo spawner launch file
 - PID controller parameters for **Jaco_b**
 - set home_position at spawner time 
 
-### Todo:
+#### Todo:
 - Moveit! support
 
 # How to use
