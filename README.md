@@ -5,6 +5,7 @@ This is a ROS stack for controlling the Kinova Jaco 2 manipulator with spherical
 **Authors**: Caio Amaral  
 **Maintainer**: Caio Amaral, caio.amaral@fbter.org.br  
 **Affiliation**: Brazilian Institute of Robotics, Centro Universitário SENAI CIMATEC
+
 **Release**: 1.0
 
 =======
@@ -43,12 +44,10 @@ This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/
 #### Configurations Available
 - j2s6s300 (**Jaco_2 w/ spherical joint**), also know as **Jaco_b**.
 
-=======
-## File system
+#### File system
 - `jacob_control`: all ros_controllers parameters (ex: PID)
 - `jacob_gazebo`: all essential files that gives jacob gazebo support
 
-=======
 #### New in release 1.0
 New Features:
 - **Gazebo support**
