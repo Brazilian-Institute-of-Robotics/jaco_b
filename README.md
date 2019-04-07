@@ -33,7 +33,12 @@ ROS stack for controlling the Kinova Jaco2 manipulator
 
 jaco_b release 1.0
 #### Configurations Available
-- j2s6s300(**Jaco_2 w/ spherical joint**)
+- j2s6s300 (**Jaco_2 w/ spherical joint**), also know as **Jaco_b**.
+
+=======
+## File system
+- `jacob_control`: all ros_controllers parameters (ex: PID)
+- `jacob_gazebo`: all essential files that gives jacob gazebo support
 
 =======
 #### New in release 1.0
@@ -47,7 +52,8 @@ Todo:
 - Moveit! support
 
 # How to use
-
+At `jacob_gazebo` just launch `robot_launch.launch`. Note that it's configurate to spawn j2s6s300 Jaco version.
+### Gazebo spawn 
 # Kinova-ROS
 
 The `kinova-ros` stack provides a ROS interface for the Kinova Robotics JACO, JACO2 and MICO robotic manipulator arms, and it is built to support further kinova products as well. Besides wide support of Kinova products, there are many bug fixes, improvements and new features as well. The stack is developed above the Kinova C++ API functions, which communicate with the DSP inside robot base. 
