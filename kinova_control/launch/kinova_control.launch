@@ -3,10 +3,17 @@
   <arg name="kinova_robotName" default="$(arg kinova_robotType)"/>  
   <arg name="use_trajectory_controller" default="true"/>
   <arg name="is7dof" default="false"/>
+  <arg name= "use_remote_pkg" default="false"/>
+  <arg name="remote_pkg" default="none"/>
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
-  <rosparam file="$(find kinova_control)/config/$(arg kinova_robotName)_control.yaml" command="load"/>
- 
+  <group unless="$(arg use_remote_pkg)">
+    <rosparam file="$(find kinova_control)/config/$(arg kinova_robotName)_control.yaml" command="load"/>
+  </group>
+  <group if="$(arg use_remote_pkg)">
+    <rosparam file="$(eval find (remote_pkg) + '/config/' + arg('kinova_robotName') + '_control.yaml')" command="load"/>
+  </group>
+
   <group unless="$(arg use_trajectory_controller)">
     <group unless="$(arg is7dof)">
       <!-- load the joint by joint position controllers -->  
