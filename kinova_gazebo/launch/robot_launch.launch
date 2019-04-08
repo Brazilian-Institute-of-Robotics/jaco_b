@@ -10,6 +10,9 @@
   <arg name="debug" default="false"/>
   <arg name="use_trajectory_controller" default="true"/>
   <arg name="is7dof" default="false"/>
+  <arg name="use_remote_pkg" default="false"/>
+  <arg name="remote_pkg" default="none"/>
+
 
   <!-- Passing kinova_robotType through param server -->
   <param name="kinova_robotType" value="$(arg kinova_robotType)"/>
@@ -38,6 +41,8 @@
     <arg name="kinova_robotType" value="$(arg kinova_robotType)"/>
     <arg name="use_trajectory_controller" value="$(arg use_trajectory_controller)"/>
     <arg name="is7dof" value="$(arg is7dof)"/>
+    <arg name="use_remote_pkg" value="$(arg use_remote_pkg)"/>
+    <arg name="remote_pkg" value="$(arg remote_pkg)"/>
   </include>
 
   <!-- rqt launch file -->
@@ -48,4 +53,3 @@
   -->
 
 </launch>
-
