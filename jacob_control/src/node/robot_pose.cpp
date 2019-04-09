@@ -52,6 +52,7 @@ int main(int argc, char** argv){
     //get current robot_state
     robot_state::RobotState& current_state = planning_scene.getCurrentStateNonConst();
 
+
     //print actual end-effector position
     const Eigen::Affine3d& end_effector_state = current_state.getGlobalLinkTransform(move_group.getEndEffectorLink());
     ROS_INFO_STREAM("Translation: \n" << end_effector_state.translation() << "\n");

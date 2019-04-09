@@ -30,21 +30,32 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+#----------------------------------- add planning_group LIBRARIES -------------------------------------------------------------#
+
 add_library(planning_group_LIBRARIES
-  src/planning_group.cpp
+  src/PlanningGroup.cpp
 )
-target_link_libraries(planning_group_LIBRARIES
-  ${catkin_LIBRARIES}  
-)
+target_link_libraries(planning_group_LIBRARIES ${catkin_LIBRARIES})
 add_dependencies(planning_group_LIBRARIES ${catkin_EXPORTED_TARGETS})
+
+#----------------------------------- add object_creator LIBRARIES -------------------------------------------------------------#
+add_library(object_creator_LIBRARIES
+  src/ObjectCreator.cpp
+)
+target_link_libraries(object_creator_LIBRARIES ${catkin_LIBRARIES})
+add_dependencies(object_creator_LIBRARIES ${catkin_LIBRARIES})
+
+#----------------------------------- add robot_pose executable -------------------------------------------------------------#
 
 add_executable(robot_pose src/node/robot_pose.cpp)
 target_link_libraries(robot_pose ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${kinova_driver_LIBRARIES})
 install(TARGETS robot_pose DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
+#----------------------------------- add moveto executable -------------------------------------------------------------#
+
 add_executable(moveto src/node/moveto.cpp)
 add_dependencies(moveto ${catkin_EXPORTED_TARGETS})
-target_link_libraries(moveto planning_group_LIBRARIES ${catkin_LIBRARIES})
+target_link_libraries(moveto planning_group_LIBRARIES object_creator_LIBRARIES ${catkin_LIBRARIES})
 #install(TARGETS moveto DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 install(DIRECTORY config
