@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <launch>
     <include file="$(find kinova_gazebo)/launch/robot_launch.launch">
         <arg name="kinova_robotType" value="j2s6s300"/>
