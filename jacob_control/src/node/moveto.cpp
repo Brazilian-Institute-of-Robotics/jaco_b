@@ -1,23 +1,27 @@
-#include <jacob_control/planning_group.h>
+#include <jacob_control/PlanningGroup.h>
+#include <jacob_control/ObjectCreator.h>
+#include <moveit_visual_tools/moveit_visual_tools.h>
+
 
 int main(int argc,char** argv){
     ros::init(argc, argv, "robot_pose");
     ros::NodeHandle nh;
     ros::AsyncSpinner spinner(1);
     spinner.start();
-
     double x, y, z;
-    std::cin >> x >> y >> z;
-    
-    ROS_INFO_NAMED("teste","%f", argv[1]);
+    //std::cin >> x >> y >> z;
 
     PlanningGroup pgroup("arm");
 
-    pgroup.actualizeEFPosition();
-    pgroup.printEFPose();
-    pgroup.setGoalPosition(x,y, z);
+    //pgroup.actualizeEFPosition();
+    //pgroup.printEFPose();
 
-    pgroup.moveTo(x,y,z);
-    pgroup.actualizeEFPosition();
-    pgroup.printEFPose();
+    ObjectCreator box(BOX, "arm"); //the same from srdf
+ 
+
+    //pgroup.setGoalPosition(x,y, z);
+
+    //pgroup.moveTo(x,y,z);
+    //pgroup.actualizeEFPosition();
+    //pgroup.printEFPose();
 }

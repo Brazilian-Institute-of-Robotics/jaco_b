@@ -1,5 +1,8 @@
 //#include <moveit/move_group_interface/move_group_interface.h>
 //#include <moveit_visual_tools/moveit_visual_tools.h>
+#ifndef PLANNING_GROUP_H 
+#define PLANNING_GROUP_H
+
 
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
@@ -11,7 +14,7 @@
 
 #include <moveit_visual_tools/moveit_visual_tools.h>
 
-#include <tf/transform_datatypes.h>
+#include <tf2/transform_datatypes.h>
 
 
 class PlanningGroup {
@@ -38,7 +41,7 @@ class PlanningGroup {
 
     geometry_msgs::Pose _goal;
 
-    private:
+    protected:
 
     std::string _group_name;
     std::vector<double> _joint_positions;
@@ -50,3 +53,5 @@ class PlanningGroup {
     collision_detection::CollisionRequest _collision_req;
     collision_detection::CollisionResult _collision_res; 
 };
+
+#endif

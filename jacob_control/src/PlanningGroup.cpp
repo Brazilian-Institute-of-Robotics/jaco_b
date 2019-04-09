@@ -1,9 +1,10 @@
-#include <jacob_control/planning_group.h>
+#include <jacob_control/PlanningGroup.h>
 #include <memory>
 
-PlanningGroup::PlanningGroup(std::string name) : _group_name(name),
-                                                _move_group (std::make_shared<moveit::planning_interface::MoveGroupInterface>(_group_name))
-                                                { 
+PlanningGroup::PlanningGroup(std::string name){
+                                                
+    _group_name = name;
+    _move_group = std::make_shared<moveit::planning_interface::MoveGroupInterface>(_group_name);
     setRobotModel();
     setPlanningScene();
 
