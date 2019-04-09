@@ -2,8 +2,6 @@
 #include <memory>
 
 PlanningGroup::PlanningGroup(std::string name) : _group_name(name),
-                                                //_robot_state(new robot_state::RobotState(_robot_model))
-                                                //move_group(new moveit::planning_interface::MoveGroupInterface(_group_name))
                                                 _move_group (std::make_shared<moveit::planning_interface::MoveGroupInterface>(_group_name))
                                                 { 
     setRobotModel();
@@ -50,12 +48,11 @@ void PlanningGroup::moveTo(double x, double y, double z){
 }
 
 void PlanningGroup::printEFPose(){
-    double x = _ef_position.pose.position.x;
-    double y = _ef_position.pose.position.y;
-    double z = _ef_position.pose.position.z;
-    double w = _ef_position.pose.orientation.w; 
-    
-    ROS_INFO("Actual end-effector position is: \n x = %f, y = %f, z= %f, w= %f", x, y, z, w);
+    ROS_INFO("Actual end-effector position is: \n x = %f, y = %f, z= %f, w= %f", _ef_position.pose.position.x, 
+                                                                                 _ef_position.pose.position.y, 
+                                                                                 _ef_position.pose.position.z, 
+                                                                                 _ef_position.pose.orientation.w);
+
 }
 
 std::string PlanningGroup::getGroupName(){

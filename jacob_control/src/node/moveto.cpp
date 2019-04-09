@@ -7,9 +7,9 @@ int main(int argc,char** argv){
     spinner.start();
 
     double x, y, z;
-    x = atof(argv[1]);
-    y = atof(argv[2]);
-    z = atof(argv[3]);
+    std::cin >> x >> y >> z;
+    
+    ROS_INFO_NAMED("teste","%f", argv[1]);
 
     PlanningGroup pgroup("arm");
 
