@@ -74,6 +74,9 @@ catkin build
 ## Gazebo spawn
 Use `roslaunch jacob_gazebo robot_launch.launch`. Note that it's configurate to spawn `j2s6s300` Kinova Jaco version.
 
+## Move to
+Use **Gazebo spawn**, then `j2s6s300_moveit_config j2s6s300_gazebo_demo.launch` for **Gazebo-MoveIt! Integration** and finally launch moveto node `roslaunch jacob_control moveto.launch`
+
 # Kinova-ROS
 
 The `kinova-ros` stack provides a ROS interface for the Kinova Robotics JACO, JACO2 and MICO robotic manipulator arms, and it is built to support further kinova products as well. Besides wide support of Kinova products, there are many bug fixes, improvements and new features as well. The stack is developed above the Kinova C++ API functions, which communicate with the DSP inside robot base. 
