@@ -4,17 +4,18 @@
 
 std::string ObjectCreator::_name;
 
-ObjectCreator::ObjectCreator(Geometry type, std::string name): PlanningGroup(name) {
+ObjectCreator::ObjectCreator(Geometry type, std::string name, ros::NodeHandle node): PlanningGroup(name) {
     _name = name;
-    createObject(type,name);
+    createObject(type,name,node);
 
 }
 
-void ObjectCreator::setPrimitive(moveit_msgs::CollisionObject object, Geometry type){
+void ObjectCreator::setPrimitive(moveit_msgs::CollisionObject& object, Geometry type){
     shape_msgs::SolidPrimitive object_primitive;
 
     switch (type){
         case BOX:
+            ROS_INFO_STREAM("is a box");
             object_primitive.type = object_primitive.BOX;
             object_primitive.dimensions.resize(3);
             object_primitive.dimensions[0] = 3.0;
@@ -23,9 +24,15 @@ void ObjectCreator::setPrimitive(moveit_msgs::CollisionObject object, Geometry t
             break;
     }
     object.primitives.push_back(object_primitive);
+    if (object.primitives.empty()){
+        ROS_INFO_STREAM("IS EMPTY");
+    }
+    else{
+        ROS_INFO_STREAM("NOT EMPTY");
+    }
 }
 
-void ObjectCreator::setPosition(moveit_msgs::CollisionObject object){
+void ObjectCreator::setPosition(moveit_msgs::CollisionObject& object){
     geometry_msgs::Pose object_pose;
     object_pose.orientation.w = 1.0;
     object_pose.position.x = 0.0;
@@ -35,19 +42,44 @@ void ObjectCreator::setPosition(moveit_msgs::CollisionObject object){
     object.primitive_poses.push_back(object_pose);
 }
 
-void ObjectCreator::createObject(Geometry type, std::string name){
-    moveit_msgs::CollisionObject object;
-    object.id = name; //ex: "plane"
-    object.header.frame_id = getPlanningFrame();
+void ObjectCreator::createObject(Geometry type, std::string name, ros::NodeHandle node){
+    _collision_object.id = name; //ex: "plane"
+    _collision_object.header.frame_id = getPlanningFrame();
 
-    setPrimitive(object,type);
-    setPosition(object);
+    setPrimitive(_collision_object,type);
 
-    object.operation = object.ADD;
+    if (_collision_object.primitives.empty()){
+        ROS_INFO_STREAM("IS EMPTY");
+    }
+    else{
+        ROS_INFO_STREAM("NOT EMPTY");
+    }
+    
+    setPosition(_collision_object);
 
-    _collision_objects.push_back(object);
+    _collision_object.operation = _collision_object.ADD;
 
-    _planning_scene_interface.addCollisionObjects(_collision_objects);
+    //_collision_objects.push_back(object);
+
+    //_planning_scene_interface.addCollisionObjects(_collision_objects);
+
+    _planning_scene.world.collision_objects.push_back(_collision_object);
+    _planning_scene.is_diff = true;
+
+    planning_scene_diff_publisher = node.advertise<moveit_msgs::PlanningScene>("/planning_scene", 1);
+
+    ros::WallDuration sleep_t(0.5);
+     while (planning_scene_diff_publisher.getNumSubscribers() < 1)
+    {
+        sleep_t.sleep();
+    }
+
+    planning_scene_diff_publisher.publish(_planning_scene);
+
+    if (_collision_object.primitives.empty()){
+        //ROS_INFO_STREAM("IS EMPTY");
+    
+    }
 
     namespace rvt = rviz_visual_tools;
     moveit_visual_tools::MoveItVisualTools visual_tools(_move_group->getPlanningFrame());

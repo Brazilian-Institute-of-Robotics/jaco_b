@@ -4,7 +4,7 @@
 
 
 int main(int argc,char** argv){
-    ros::init(argc, argv, "robot_pose");
+    ros::init(argc, argv, "moveto");
     ros::NodeHandle nh;
     ros::AsyncSpinner spinner(1);
     spinner.start();
@@ -16,7 +16,7 @@ int main(int argc,char** argv){
     //pgroup.actualizeEFPosition();
     //pgroup.printEFPose();
 
-    ObjectCreator box(BOX, "arm"); //the same from srdf
+    ObjectCreator box(BOX, "object_handle", nh); //the same from srdf
  
 
     //pgroup.setGoalPosition(x,y, z);

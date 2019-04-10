@@ -106,7 +106,7 @@ int main(int argc, char** argv){
     namespace rvt = rviz_visual_tools;
     moveit_visual_tools::MoveItVisualTools visual_tools(move_group.getPlanningFrame());
     visual_tools.trigger();
-    
+
 //----------------------------------------------------------------- Plan Path -------------------------------------------------------------
     //compute the plan path
     moveit::planning_interface::MoveGroupInterface::Plan my_plan;

@@ -81,7 +81,7 @@ void PlanningGroup::setRobotModel(){
     ROS_INFO("existing");
     robot_model_loader::RobotModelLoader robot_model_loader("robot_description");
     _robot_model = robot_model_loader.getModel();
-    ROS_INFO("existing");
+    ROS_INFO_STREAM(_group_name + " is setted");
 }
 
 void PlanningGroup::setRobotState(){
