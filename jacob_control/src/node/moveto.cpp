@@ -9,13 +9,7 @@ int main(int argc,char** argv){
     ros::AsyncSpinner spinner(1);
     spinner.start();
     double x, y, z;
-<<<<<<< HEAD
-    x = atof(argv[1]);
-    y = atof(argv[2]);
-    z = atof(argv[3]);
-=======
     //std::cin >> x >> y >> z;
->>>>>>> 7a78e7a... add ObjectCreator class
 
     PlanningGroup pgroup("arm");
 

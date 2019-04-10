@@ -1,18 +1,10 @@
 #include <jacob_control/PlanningGroup.h>
 #include <memory>
 
-<<<<<<< HEAD:jacob_control/src/planning_group.cpp
-PlanningGroup::PlanningGroup(std::string name) : _group_name(name),
-                                                //_robot_state(new robot_state::RobotState(_robot_model))
-                                                //move_group(new moveit::planning_interface::MoveGroupInterface(_group_name))
-                                                _move_group (std::make_shared<moveit::planning_interface::MoveGroupInterface>(_group_name))
-                                                { 
-=======
 PlanningGroup::PlanningGroup(std::string name){
                                                 
     _group_name = name;
     _move_group = std::make_shared<moveit::planning_interface::MoveGroupInterface>(_group_name);
->>>>>>> 7a78e7a... add ObjectCreator class:jacob_control/src/PlanningGroup.cpp
     setRobotModel();
     setPlanningScene();
 

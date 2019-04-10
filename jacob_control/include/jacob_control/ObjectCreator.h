@@ -15,7 +15,7 @@ class ObjectCreator : public PlanningGroup{
     void setPosition( moveit_msgs::CollisionObject object);
     void setPrimitive(moveit_msgs::CollisionObject object, Geometry type);
     void createObject(Geometry type, std::string name);
-    static std::string _name;// = "objects_collision";
+    static std::string _name;
 
 
     private:
