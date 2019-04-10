@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="moveto" pkg="jacob_control" type="moveto" respawn="false" output="screen">
+        <remap from="/joint_states" to="/j2s6s300/joint_states" />
+    </node>
+</launch>

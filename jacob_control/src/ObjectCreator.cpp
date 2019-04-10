@@ -2,10 +2,10 @@
 #include <moveit_visual_tools/moveit_visual_tools.h>
 
 
-std::string ObjectCreator::_name;
+std::string ObjectCreator::_name = "object_handle";
 
-ObjectCreator::ObjectCreator(Geometry type, std::string name, ros::NodeHandle node): PlanningGroup(name) {
-    _name = name;
+ObjectCreator::ObjectCreator(Geometry type, std::string name, ros::NodeHandle node): PlanningGroup(_name) {
+    _name = "object_handle";
     createObject(type,name,node);
 
 }
@@ -76,10 +76,7 @@ void ObjectCreator::createObject(Geometry type, std::string name, ros::NodeHandl
 
     planning_scene_diff_publisher.publish(_planning_scene);
 
-    if (_collision_object.primitives.empty()){
-        //ROS_INFO_STREAM("IS EMPTY");
-    
-    }
+    ROS_INFO_STREAM(name + " spawned");
 
     namespace rvt = rviz_visual_tools;
     moveit_visual_tools::MoveItVisualTools visual_tools(_move_group->getPlanningFrame());

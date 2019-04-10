@@ -9,19 +9,19 @@ int main(int argc,char** argv){
     ros::AsyncSpinner spinner(1);
     spinner.start();
     double x, y, z;
-    //std::cin >> x >> y >> z;
+    std::cin >> x >> y >> z;
 
     PlanningGroup pgroup("arm");
 
-    //pgroup.actualizeEFPosition();
-    //pgroup.printEFPose();
+    pgroup.actualizeEFPosition();
+    pgroup.printEFPose();
 
-    ObjectCreator box(BOX, "object_handle", nh); //the same from srdf
+    ObjectCreator box(BOX, "plan", nh); //the same from srdf
  
 
-    //pgroup.setGoalPosition(x,y, z);
+    pgroup.setGoalPosition(x,y, z);
 
-    //pgroup.moveTo(x,y,z);
-    //pgroup.actualizeEFPosition();
-    //pgroup.printEFPose();
+    pgroup.moveTo(x,y,z);
+    pgroup.actualizeEFPosition();
+    pgroup.printEFPose();
 }
