@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<package>
+<package format="2">
   <name>jacob_control</name>
   <version>0.0.0</version>
   <description>The kinova_control package</description>
@@ -15,8 +14,15 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <!--depend>moveit_core</depend-->
+  <!--depend>moveit_ros_planning_interface</depend-->
+  <!--depend>interactive_markers</depend-->
 
-
+  <!-- build_depend>moveit_ros_planning</build_depend-->
+  <build_depend>moveit_visual_tools</build_depend>
+  <build_depend>pluginlib</build_depend>
+  <!-- build_depend>cmake_modules</build_depend-->
+  <!--build_depend>geometric_shapes</build_depend-->
 
   <export>
   </export>

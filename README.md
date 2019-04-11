@@ -6,7 +6,7 @@ This is a ROS stack for controlling **Jacob**, a [Kinova Jaco 2](https://www.kin
 **Maintainer**: Caio Amaral, caio.amaral@fbter.org.br  
 **Affiliation**: [Brazilian Institute of Robotics](https://github.com/Brazilian-Institute-of-Robotics), Centro Universitário SENAI CIMATEC
 
-**Release**: 1.0
+**Release**: 1.1
 
 # Table of Contents
 - [Important](#important)
@@ -49,12 +49,16 @@ This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/
 - `jacob_control`: all ros_controllers parameters (ex: PID)
 - `jacob_gazebo`: all essential files that gives jacob gazebo support
 
-### 3. News in release 1.0
+### 3. News in release 1.1
 #### New Features:
 - **Gazebo support**
-- `j2s6s300`(**Jaco_b**) gazebo spawner launch file
-- PID controller parameters for **Jaco_b**
-- set home_position at spawner time 
+	- `j2s6s300`(**Jaco_b**) gazebo spawner launch file
+	- PID controller parameters for **Jaco_b**
+	- set home_position at spawner time
+- **MoveIt support**
+	- Gazebo/Moveit Integration
+	- Move-to
+	- Object spawner 
 
 #### Todo:
 - Moveit! support
@@ -73,6 +77,9 @@ catkin build
 # How to use
 ## Gazebo spawn
 Use `roslaunch jacob_gazebo robot_launch.launch`. Note that it's configurate to spawn `j2s6s300` Kinova Jaco version.
+
+## Move to
+Use **Gazebo spawn**, then `j2s6s300_moveit_config j2s6s300_gazebo_demo.launch` for **Gazebo-MoveIt! Integration** and finally launch moveto node `roslaunch jacob_control moveto.launch`
 
 # Kinova-ROS
 
