@@ -70,16 +70,26 @@ mkdir catkin_ws
 cd ~/catkin_ws/
 catkin config
 catkin init
-git clone https://github.com/Brazilian-Institute-of-Robotics/jaco_b src
+git clone --recurse-submodules https://github.com/Brazilian-Institute-of-Robotics/jaco_b src
 catkin build
+cd ~/catkin_ws/src/kinova-ros
+git checkout kinova-bir
 ```
 
 # How to use
 ## Gazebo spawn
 Use `roslaunch jacob_gazebo robot_launch.launch`. Note that it's configurate to spawn `j2s6s300` Kinova Jaco version.
+```
+source ~/catkin_ws/devel/setup.bash
+roslaunch jacob_gazebo robot_launch.launch
+```
 
 ## Move to
-Use **Gazebo spawn**, then `j2s6s300_moveit_config j2s6s300_gazebo_demo.launch` for **Gazebo-MoveIt! Integration** and finally launch moveto node `roslaunch jacob_control moveto.launch`
+Use **Gazebo spawn**, then `j2s6s300_moveit_config j2s6s300_gazebo_demo.launch` for **Gazebo-MoveIt! Integration** and finally launch moveto node `roslaunch jacob_control moveto.launch`.Moveto node, after launch will wait for user input for x, y and z carthesian coordinates (eg. `-0.3 0.3 0.3`).
+```
+j2s6s300_moveit_config j2s6s300_gazebo_demo.launch
+roslaunch jacob_control moveto.launch
+```
 
 # Kinova-ROS
 
