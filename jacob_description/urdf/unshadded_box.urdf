@@ -3,13 +3,13 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://kinova_description/meshes/unshadded_box.dae"/>
+                <mesh filename="package://jacob_description/meshes/unshadded_box.dae"/>
             </geometry>
         </visual>
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://kinova_description/meshes/unshadded_box.dae"/>
+                <mesh filename="package://jacob_description/meshes/unshadded_box.dae"/>
             </geometry>
         </collision>
         <inertial>

@@ -66,14 +66,14 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://kinova_description/meshes/${camera_mesh}.dae"/>
+        <mesh filename="package://jacob_description/meshes/${camera_mesh}.dae"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0 0 0" rpy="1.5707 0 -1.5707"/>
       <geometry>
-        <mesh filename="package://kinova_description/meshes/${camera_mesh}.dae"/>
+        <mesh filename="package://jacob_description/meshes/${camera_mesh}.dae"/>
       </geometry>
       <material name="red"/>
     </visual>
