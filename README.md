@@ -85,12 +85,12 @@ roslaunch jacob_gazebo robot_launch.launch
 ```
 
 ## Move to
-Use **Gazebo spawn**, then `j2s6s300_moveit_config j2s6s300_gazebo_demo.launch` for **Gazebo-MoveIt! Integration** and finally launch moveto node `roslaunch jacob_control moveto.launch`.Moveto node, after launch will wait for user input for x, y and z carthesian coordinates (eg. `-0.3 0.3 0.3`).
+Use **Gazebo spawn**, then `j2s6s300_moveit_config j2s6s300_gazebo_demo.launch` for **Gazebo-MoveIt! Integration** and finally launch moveto node `roslaunch jacob_control moveto.launch`.
 ```
 j2s6s300_moveit_config j2s6s300_gazebo_demo.launch
 roslaunch jacob_control moveto.launch
 ```
-
+**obs:** Moveto node, after launched, will wait for user input for x, y and z carthesian coordinates (eg. `-0.3 0.3 0.3`).
 # Kinova-ROS
 
 The `kinova-ros` stack provides a ROS interface for the Kinova Robotics JACO, JACO2 and MICO robotic manipulator arms, and it is built to support further kinova products as well. Besides wide support of Kinova products, there are many bug fixes, improvements and new features as well. The stack is developed above the Kinova C++ API functions, which communicate with the DSP inside robot base. 
