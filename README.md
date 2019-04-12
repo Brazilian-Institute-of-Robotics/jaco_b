@@ -1,5 +1,3 @@
-
-Set of ROS packages for controlling the Kinova Jaco armSet of ROS packages for controlling the Kinova Jaco arm
 =======
 # Table of Contents
 - [Important](#important)
