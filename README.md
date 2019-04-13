@@ -57,8 +57,8 @@ This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/
 - **Modularized URDF files**
 	- Uses only robotName_standalone.xacro and robotName.xacro
 	- All the other macros are called from kinova_description package (inside kinova-ros)
-	- Add meshes and URDF from objects scene
-	- Add a box with aprilTag
+	- Add meshes and URDF scene objects files
+	- Add a box with an aprilTag
 #### All Features:
 - **Gazebo support**
 	- `j2s6s300`(**Jacob**) gazebo spawner launch file
