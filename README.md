@@ -43,7 +43,9 @@ This is a ROS stack for controlling **Jacob**, a [Kinova Jaco 2](https://www.kin
 This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/kinova-ros) and [apriltags2_ros](https://github.com/dmalyuta/apriltags2_ros) 
 
 ### 1. Configurations Available
-- **kinova_robotName:** jacob    **kinova_robotType:** j2s6s300 (**Jaco_2 w/ wrist spherical joint, 6DOF and 3 fingers**)
+- **Jacob**
+	- **kinova_robotName:** jacob    
+	- **kinova_robotType:** j2s6s300 (**Jaco_2 w/ wrist spherical joint, 6DOF and 3 fingers**)
 
 ### 2. File system
 - `jacob_control`: all ros_controllers parameters (ex: PID)
