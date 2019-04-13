@@ -5,7 +5,7 @@
 std::string ObjectCreator::_name = "object_handle";
 
 ObjectCreator::ObjectCreator(Geometry type, std::string name, ros::NodeHandle node): PlanningGroup(_name) {
-    _name = "object_handle";
+    _name = "object_handle"; //same from srdf
     createObject(type,name,node);
 
 }

@@ -16,7 +16,7 @@ int main(int argc,char** argv){
     pgroup.actualizeEFPosition();
     pgroup.printEFPose();
 
-    ObjectCreator box(BOX, "plan", nh); //the same from srdf
+    ObjectCreator box(BOX, "plan", nh);
  
 
     pgroup.setGoalPosition(x,y, z);
