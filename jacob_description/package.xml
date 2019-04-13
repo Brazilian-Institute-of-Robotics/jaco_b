@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>kinova_description</name>
+  <name>jacob_description</name>
   <version>0.0.1</version>
   <description>
       3D model of various Kinova robotic arms.
