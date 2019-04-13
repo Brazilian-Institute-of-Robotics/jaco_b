@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <launch>
     <include file="$(find kinova_gazebo)/launch/robot_launch.launch">
-        <arg name="kinova_robotType" value="jacob"/>
+        <arg name="kinova_robotType" value="j2s6s300"/>
+        <arg name="kinova_robotName" value="jacob"/>
         <arg name="use_remote_pkg" value="true"/>
         <arg name="pkg_control" value="jacob_control"/>
         <arg name="pkg_description" value="jacob_description"/>        
