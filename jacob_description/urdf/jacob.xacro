@@ -106,7 +106,7 @@
 
 
 
-    <xacro:macro name="j2s6s300" params="base_parent prefix:=j2s6s300">
+    <xacro:macro name="jacob" params="base_parent prefix:=jacob">
 
         <xacro:gazebo_config robot_namespace="${prefix}"/>
     

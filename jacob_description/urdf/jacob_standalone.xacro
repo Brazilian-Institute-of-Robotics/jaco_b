@@ -47,6 +47,6 @@
 
   <xacro:property name="robot_root" value="root" />
 
-  <xacro:j2s6s300  base_parent="${robot_root}"/>
+  <xacro:jacob  base_parent="${robot_root}"/>
 
 </robot>
