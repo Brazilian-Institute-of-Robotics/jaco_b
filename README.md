@@ -49,8 +49,13 @@ This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/
 - `jacob_control`: all ros_controllers parameters (ex: PID)
 - `jacob_gazebo`: all essential files that gives jacob gazebo support
 
-### 3. News in release 1.1
+### 3. Release 1.2
 #### New Features:
+- **MoveIt support**
+	- Gazebo/Moveit Integration
+	- Move-to
+	- Object spawner 
+#### All Features:
 - **Gazebo support**
 	- `j2s6s300`(**Jaco_b**) gazebo spawner launch file
 	- PID controller parameters for **Jaco_b**
@@ -59,9 +64,10 @@ This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/
 	- Gazebo/Moveit Integration
 	- Move-to
 	- Object spawner 
-
 #### Todo:
-- Moveit! support
+- Modularize URDF files
+- Add genie Nano in URDF
+- Add mark_detection node
 
 # Installation
 ```
