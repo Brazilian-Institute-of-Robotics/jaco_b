@@ -15,8 +15,16 @@ def argumentParser(argument):
   argv = rospy.myargv()
   args_ = parser.parse_args(argv[1:])
   prefix = args_.kinova_robotType
-  nbJoints = int(args_.kinova_robotType[3])	
-  nbfingers = int(args_.kinova_robotType[5])	
+  print (argv)
+  if argv[1] == 'jacob':
+    nbJoints = 6
+    nbfingers = 3
+    print (argv)
+  else:
+    nbJoints = int(args_.kinova_robotType[3])	
+    nbfingers = int(args_.kinova_robotType[5])
+    #nbJoints = 6
+    #nbfingers = 3	
   return prefix, nbJoints, nbfingers
 
 def moveJoint (jointcmds,prefix,nbJoints):
@@ -76,4 +84,4 @@ if __name__ == '__main__':
 
     moveFingers ([1,1,1],prefix,nbfingers)
   except rospy.ROSInterruptException:
-    print "program interrupted before completion"
+    print ("program interrupted before completion")
