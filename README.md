@@ -1,5 +1,4 @@
-
-Set of ROS packages for controlling the Kinova Jaco armSet of ROS packages for controlling the Kinova Jaco arm
+# This is a forked version from [kinova](https://github.com/Kinovarobotics/kinova-ros) that supports ROS Kinetic
 =======
 # Table of Contents
 - [Important](#important)

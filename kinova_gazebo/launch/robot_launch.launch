@@ -11,11 +11,14 @@
   <arg name="use_trajectory_controller" default="true"/>
   <arg name="is7dof" default="false"/>
   <arg name="use_remote_pkg" default="false"/>
-  <arg name="remote_pkg" default="none"/>
-
+  <arg name="pkg_control" default="kinova_control"/>
+  <arg name="pkg_description" default="kinova_description"/>  
+  <arg name="path" default="(find $(arg pkg_description))/urdf/$(arg kinova_robotName)_standalone.xacro"/>
 
   <!-- Passing kinova_robotType through param server -->
   <param name="kinova_robotType" value="$(arg kinova_robotType)"/>
+  <param name="kinova_robotName" value="$(arg kinova_robotName)"/>
+
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -29,7 +32,7 @@
 
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find kinova_description)/urdf/$(arg kinova_robotType)_standalone.xacro'" />
+    command="$(find xacro)/xacro --inorder '$$(arg path)'" />
 
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
@@ -41,6 +44,7 @@
     <arg name="kinova_robotType" value="$(arg kinova_robotType)"/>
     <arg name="use_trajectory_controller" value="$(arg use_trajectory_controller)"/>
     <arg name="is7dof" value="$(arg is7dof)"/>
+    <arg name="pkg_control" value="$(arg pkg_control)"/>
   </include>
 
   <!-- rqt launch file -->
