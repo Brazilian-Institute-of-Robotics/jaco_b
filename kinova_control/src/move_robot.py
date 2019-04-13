@@ -11,20 +11,13 @@ def argumentParser(argument):
   parser = argparse.ArgumentParser(description='Drive robot joint to command position')
   parser.add_argument('kinova_robotType', metavar='kinova_robotType', type=str, default='j2n6a300',
                     help='kinova_RobotType is in format of: [{j|m|r|c}{1|2}{s|n}{4|6|7}{s|a}{2|3}{0}{0}]. eg: j2n6a300 refers to jaco v2 6DOF assistive 3fingers. Please be noted that not all options are valided for different robot types.')
+  parser.add_argument('kinova_robotName', metavar='kinova_robotName', type=str, default='j2n6a300')
   #args_ = parser.parse_args(argument)
   argv = rospy.myargv()
   args_ = parser.parse_args(argv[1:])
-  prefix = args_.kinova_robotType
-  print (argv)
-  if argv[1] == 'jacob':
-    nbJoints = 6
-    nbfingers = 3
-    print (argv)
-  else:
-    nbJoints = int(args_.kinova_robotType[3])	
-    nbfingers = int(args_.kinova_robotType[5])
-    #nbJoints = 6
-    #nbfingers = 3	
+  prefix = args_.kinova_robotName
+  nbJoints = int(args_.kinova_robotType[3])	
+  nbfingers = int(args_.kinova_robotType[5])
   return prefix, nbJoints, nbfingers
 
 def moveJoint (jointcmds,prefix,nbJoints):

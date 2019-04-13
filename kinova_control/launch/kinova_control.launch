@@ -51,7 +51,7 @@
   </node>
   
   <node name="command_robot_home_pose" pkg="kinova_control" type="move_robot.py"
-        respawn="false" output="screen" args="$(arg kinova_robotName)">       
+        respawn="false" output="screen" args="$(arg kinova_robotType) $(arg kinova_robotName)">       
   </node>
  
 </launch>
