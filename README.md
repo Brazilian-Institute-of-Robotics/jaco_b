@@ -6,7 +6,7 @@ This is a ROS stack for controlling **Jacob**, a [Kinova Jaco 2](https://www.kin
 **Maintainer**: Caio Amaral, caio.amaral@fbter.org.br  
 **Affiliation**: [Brazilian Institute of Robotics](https://github.com/Brazilian-Institute-of-Robotics), Centro Universitário SENAI CIMATEC
 
-**Release**: 1.1
+**Release**: 1.2
 
 # Table of Contents
 - [Important](#important)
@@ -43,25 +43,34 @@ This is a ROS stack for controlling **Jacob**, a [Kinova Jaco 2](https://www.kin
 This stack use as its submodule: [kinova-ros](https://github.com/Kinovarobotics/kinova-ros) and [apriltags2_ros](https://github.com/dmalyuta/apriltags2_ros) 
 
 ### 1. Configurations Available
-- j2s6s300 (**Jaco_2 w/ spherical joint**), also know as **Jaco_b**.
+- **Jacob**
+	- **kinova_robotName:** jacob    
+	- **kinova_robotType:** j2s6s300 (**Jaco_2 w/ wrist spherical joint, 6DOF and 3 fingers**)
 
 ### 2. File system
 - `jacob_control`: all ros_controllers parameters (ex: PID)
 - `jacob_gazebo`: all essential files that gives jacob gazebo support
+- `jacob_description`: meshs and URDF files essential for jacob simulations
 
-### 3. News in release 1.1
+### 3. Release 1.2
 #### New Features:
+- **Modularized URDF files**
+	- Uses only robotName_standalone.xacro and robotName.xacro
+	- All the other macros are called from kinova_description package (inside kinova-ros)
+	- Add meshes and URDF scene objects files
+	- Add a box with an aprilTag
+#### All Features:
 - **Gazebo support**
-	- `j2s6s300`(**Jaco_b**) gazebo spawner launch file
-	- PID controller parameters for **Jaco_b**
+	- `j2s6s300`(**Jacob**) gazebo spawner launch file
+	- PID controller parameters for **Jacob**
 	- set home_position at spawner time
 - **MoveIt support**
 	- Gazebo/Moveit Integration
-	- Move-to
+	- Move-to roscpp node (using carthesian coordinates)
 	- Object spawner 
-
 #### Todo:
-- Moveit! support
+- Add genie Nano in URDF
+- Add mark_detection node
 
 # Installation
 ```
@@ -85,9 +94,9 @@ roslaunch jacob_gazebo robot_launch.launch
 ```
 
 ## Move to
-Use **Gazebo spawn**, then `j2s6s300_moveit_config j2s6s300_gazebo_demo.launch` for **Gazebo-MoveIt! Integration** and finally launch moveto node `roslaunch jacob_control moveto.launch`.
+First you need **Gazebo spawn** Jacob, then `roslaunch j2s6s300_moveit_config j2s6s300_gazebo_demo.launch` for **Gazebo-MoveIt! Integration** and finally launch moveto node `roslaunch jacob_control moveto.launch`.
 ```
-j2s6s300_moveit_config j2s6s300_gazebo_demo.launch
+roslaunch j2s6s300_moveit_config j2s6s300_gazebo_demo.launch
 roslaunch jacob_control moveto.launch
 ```
 **obs:** Moveto node, after launched, will wait for user input for x, y and z carthesian coordinates (eg. `-0.3 0.3 0.3`).
