@@ -59,12 +59,23 @@ void PlanningGroup::moveTo(double x, double y, double z){
 }
 
 void PlanningGroup::printEFPose(){
-    double x = _ef_position.pose.position.x;
-    double y = _ef_position.pose.position.y;
-    double z = _ef_position.pose.position.z;
-    double w = _ef_position.pose.orientation.w; 
+
+    ROS_INFO("Actual end-effector position is: \n x = %f, y = %f, z= %f, w= %f", _ef_position.pose.position.x
+                                                                                , _ef_position.pose.position.y
+                                                                                , _ef_position.pose.position.z
+                                                                                , _ef_position.pose.orientation.w);
+}
+
+void PlanningGroup::printGoalPosition(){
     
-    ROS_INFO("Actual end-effector position is: \n x = %f, y = %f, z= %f, w= %f", x, y, z, w);
+    ROS_INFO("Actual goal position is: \n x = %f, \n y = %f, \n z= %f", _goal.position.x
+                                                                        , _goal.position.y
+                                                                        , _goal.position.z);
+        
+    ROS_INFO("Actual goal orientation is: \n x = %f, \n y = %f, \n z= %f, \n w=%f", _goal.orientation.x
+                                                                                , _goal.orientation.y
+                                                                                , _goal.orientation.z
+                                                                                , _goal.orientation.w);
 }
 
 std::string PlanningGroup::getGroupName(){

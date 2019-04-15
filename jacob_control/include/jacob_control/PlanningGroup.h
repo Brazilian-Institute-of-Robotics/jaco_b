@@ -28,6 +28,7 @@ class PlanningGroup {
     void moveTo(geometry_msgs::Pose goal);
     void moveTo(double x, double y, double z);
     void printEFPose();
+    void printGoalPosition();
     std::string getGroupName();
     std::string getPlanningFrame();
     void setRobotModel();
