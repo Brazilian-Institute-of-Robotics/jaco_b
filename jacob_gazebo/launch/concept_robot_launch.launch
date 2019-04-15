@@ -4,5 +4,11 @@
         <arg name="kinova_robotType" value="j2n6s300"/>
         <arg name="pkg_control" value="jacob_control"/>
         <arg name="pkg_description" value="jacob_description"/>
+        <arg name="world_name" default="$(find jacob_gazebo)/worlds/jaco.world"/>    
     </include>
+
+    <node name="tag_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-urdf -file $(find jacob_description)/urdf/april_box.urdf -model april_box
+        -x -0.7 -y 0.14 -z 0.7"/>
+
 </launch>
