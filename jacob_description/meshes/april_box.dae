@@ -5,9 +5,9 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
     </contributor>
-    <created>2019-03-08T14:36:40</created>
-    <modified>2019-03-08T14:36:40</modified>
-    <unit name="meter" meter="1"/>
+    <created>2019-04-15T10:38:04</created>
+    <modified>2019-04-15T10:38:04</modified>
+    <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_cameras>
@@ -102,8 +102,8 @@
     </light>
   </library_lights>
   <library_images>
-    <image id="apriltag36h11__23_png" name="apriltag36h11__23_png">
-      <init_from>apriltag36h11_#23.png</init_from>
+    <image id="apriltag36h11__0_png" name="apriltag36h11__0_png">
+      <init_from>apriltag36h11_#0.png</init_from>
     </image>
   </library_images>
   <library_effects>
@@ -112,13 +112,13 @@
         <technique sid="common">
           <phong>
             <emission>
-              <color sid="emission">0.3699999 0.3699999 0.3699999 1</color>
+              <color sid="emission">0 0 0 1</color>
             </emission>
             <ambient>
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <color sid="diffuse">0.003916306 0.003916306 0.003916306 1</color>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -133,28 +133,28 @@
         </technique>
       </profile_COMMON>
     </effect>
-    <effect id="apriltag-effect">
+    <effect id="tagged-effect">
       <profile_COMMON>
-        <newparam sid="apriltag36h11__23_png-surface">
+        <newparam sid="apriltag36h11__0_png-surface">
           <surface type="2D">
-            <init_from>apriltag36h11__23_png</init_from>
+            <init_from>apriltag36h11__0_png</init_from>
           </surface>
         </newparam>
-        <newparam sid="apriltag36h11__23_png-sampler">
+        <newparam sid="apriltag36h11__0_png-sampler">
           <sampler2D>
-            <source>apriltag36h11__23_png-surface</source>
+            <source>apriltag36h11__0_png-surface</source>
           </sampler2D>
         </newparam>
         <technique sid="common">
           <phong>
             <emission>
-              <color sid="emission">0.6899996 0.6899996 0.6899996 1</color>
+              <color sid="emission">0.6099997 0.6099997 0.6099997 1</color>
             </emission>
             <ambient>
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <texture texture="apriltag36h11__23_png-sampler" texcoord="UVMap"/>
+              <texture texture="apriltag36h11__0_png-sampler" texcoord="UVMap"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -174,15 +174,15 @@
     <material id="Material-material" name="Material">
       <instance_effect url="#Material-effect"/>
     </material>
-    <material id="apriltag-material" name="apriltag">
-      <instance_effect url="#apriltag-effect"/>
+    <material id="tagged-material" name="tagged">
+      <instance_effect url="#tagged-effect"/>
     </material>
   </library_materials>
   <library_geometries>
     <geometry id="Cube-mesh" name="Cube">
       <mesh>
         <source id="Cube-mesh-positions">
-          <float_array id="Cube-mesh-positions-array" count="24">1 1 -1 1 -1 -1 -1 -0.9999998 -1 -0.9999997 1 -1 1 0.9999995 1 0.9999994 -1.000001 1 -1 -0.9999997 1 -1 1 1</float_array>
+          <float_array id="Cube-mesh-positions-array" count="24">1 1.009271 -1.009271 1 -1.009271 -1.009271 -1 -0.9999998 -1 -0.9999997 1 -1 1 1.00927 1.009271 0.9999994 -1.009271 1.009271 -1 -0.9999997 1 -1 1 1</float_array>
           <technique_common>
             <accessor source="#Cube-mesh-positions-array" count="8" stride="3">
               <param name="X" type="float"/>
@@ -192,7 +192,7 @@
           </technique_common>
         </source>
         <source id="Cube-mesh-normals">
-          <float_array id="Cube-mesh-normals-array" count="36">0 0 -1 0 0 1 1 0 -2.38419e-7 0 -1 -4.76837e-7 -1 2.38419e-7 -1.49012e-7 2.68221e-7 1 2.38419e-7 0 0 -1 0 0 1 1 -5.96046e-7 3.27825e-7 -4.76837e-7 -1 0 -1 2.38419e-7 -1.19209e-7 2.08616e-7 1 0</float_array>
+          <float_array id="Cube-mesh-normals-array" count="36">-0.004635155 0 -0.9999893 -0.004635334 0 0.9999893 1 0 -2.36229e-7 -0.004635334 -0.9999893 -3.54339e-7 -1 2.38419e-7 -1.49012e-7 -0.004635035 0.9999893 2.36226e-7 -0.004635334 0 -0.9999893 -0.004635214 0 0.9999893 1 -5.85147e-7 3.24814e-7 -0.004635691 -0.9999893 0 -1 2.38419e-7 -1.19209e-7 -0.004635095 0.9999893 1.4901e-7</float_array>
           <technique_common>
             <accessor source="#Cube-mesh-normals-array" count="12" stride="3">
               <param name="X" type="float"/>
@@ -210,16 +210,6 @@
             </accessor>
           </technique_common>
         </source>
-        <source id="Cube-mesh-colors-Col" name="Col">
-          <float_array id="Cube-mesh-colors-Col-array" count="108">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
-          <technique_common>
-            <accessor source="#Cube-mesh-colors-Col-array" count="36" stride="3">
-              <param name="R" type="float"/>
-              <param name="G" type="float"/>
-              <param name="B" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
         <vertices id="Cube-mesh-vertices">
           <input semantic="POSITION" source="#Cube-mesh-positions"/>
         </vertices>
@@ -227,15 +217,13 @@
           <input semantic="VERTEX" source="#Cube-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Cube-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Cube-mesh-map-0" offset="2" set="0"/>
-          <input semantic="COLOR" source="#Cube-mesh-colors-Col" offset="3" set="0"/>
-          <p>0 0 0 0 2 0 1 1 3 0 2 2 7 1 3 3 5 1 4 4 4 1 5 5 5 3 9 9 2 3 10 10 1 3 11 11 2 4 12 12 7 4 13 13 3 4 14 14 0 5 15 15 7 5 16 16 4 5 17 17 0 6 18 18 1 6 19 19 2 6 20 20 7 7 21 21 6 7 22 22 5 7 23 23 5 9 27 27 6 9 28 28 2 9 29 29 2 10 30 30 6 10 31 31 7 10 32 32 0 11 33 33 3 11 34 34 7 11 35 35</p>
+          <p>0 0 0 2 0 1 3 0 2 7 1 3 5 1 4 4 1 5 5 3 9 2 3 10 1 3 11 2 4 12 7 4 13 3 4 14 0 5 15 7 5 16 4 5 17 0 6 18 1 6 19 2 6 20 7 7 21 6 7 22 5 7 23 5 9 27 6 9 28 2 9 29 2 10 30 6 10 31 7 10 32 0 11 33 3 11 34 7 11 35</p>
         </triangles>
-        <triangles material="apriltag-material" count="2">
+        <triangles material="tagged-material" count="2">
           <input semantic="VERTEX" source="#Cube-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Cube-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Cube-mesh-map-0" offset="2" set="0"/>
-          <input semantic="COLOR" source="#Cube-mesh-colors-Col" offset="3" set="0"/>
-          <p>4 2 6 6 1 2 7 7 0 2 8 8 4 8 24 24 5 8 25 25 1 8 26 26</p>
+          <p>4 2 6 1 2 7 0 2 8 4 8 24 5 8 25 1 8 26</p>
         </triangles>
       </mesh>
     </geometry>
@@ -252,16 +240,12 @@
         <instance_light url="#Lamp-light"/>
       </node>
       <node id="Cube" name="Cube" type="NODE">
-        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <matrix sid="transform">0.7500001 0 0 0 0 4.954071 0 0 0 0 4.954072 0 0 0 0 1</matrix>
         <instance_geometry url="#Cube-mesh" name="Cube">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Material-material" target="#Material-material">
-                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
-              </instance_material>
-              <instance_material symbol="apriltag-material" target="#apriltag-material">
-                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
-              </instance_material>
+              <instance_material symbol="Material-material" target="#Material-material"/>
+              <instance_material symbol="tagged-material" target="#tagged-material"/>
             </technique_common>
           </bind_material>
         </instance_geometry>
