@@ -12,7 +12,8 @@
   <arg name="is7dof" default="false"/>
   <arg name="use_remote_pkg" default="false"/>
   <arg name="pkg_control" default="kinova_control"/>
-  <arg name="pkg_description" default="kinova_description"/>  
+  <arg name="pkg_description" default="kinova_description"/>
+  <arg name="world_name" default="$(find kinova_gazebo)/worlds/jaco.world"/>    
   <arg name="path" default="(find $(arg pkg_description))/urdf/$(arg kinova_robotName)_standalone.xacro"/>
 
   <!-- Passing kinova_robotType through param server -->
@@ -22,7 +23,7 @@
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find kinova_gazebo)/worlds/jaco.world"/>
+    <arg name="world_name" value="$(arg world_name)"/>
     <arg name="debug" value="$(arg debug)" />
     <arg name="gui" value="$(arg gui)" />
     <arg name="paused" value="$(arg paused)"/>
