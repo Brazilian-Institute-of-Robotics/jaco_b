@@ -17,7 +17,7 @@ void PlanningGroup::actualizeEFPosition(){
     _ef_position = _move_group->getCurrentPose();
 }
 
-bool PlanningGroup::checkGoal(geometry_msgs::Pose goal){
+bool PlanningGroup::checkGoal(){
     moveit::planning_interface::MoveGroupInterface::Plan my_plan;
     bool success = (_move_group->plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
     ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "SUCESS" : "FAILED");
@@ -32,7 +32,17 @@ void PlanningGroup::checkSelfCollision(){
 
 void PlanningGroup::moveTo(geometry_msgs::Pose goal){
     setGoal(goal);
-    if ( checkGoal(goal) == true ){
+    if ( checkGoal() == true ){
+        sleep(5.0);
+
+        //execute the trajectory
+        _move_group->move();
+    }
+}
+
+void PlanningGroup::moveTo(geometry_msgs::PoseStamped goal){
+    setGoal(goal);
+    if ( checkGoal() == true ){
         sleep(5.0);
 
         //execute the trajectory
@@ -66,6 +76,10 @@ std::string PlanningGroup::getPlanningFrame(){
 }
 
 void PlanningGroup::setGoal(geometry_msgs::Pose goal){
+    _move_group->setPoseTarget(goal); 
+}
+
+void PlanningGroup::setGoal(geometry_msgs::PoseStamped goal){
     _move_group->setPoseTarget(goal); 
 }
 

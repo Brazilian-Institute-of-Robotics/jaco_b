@@ -23,7 +23,8 @@ class PlanningGroup {
     PlanningGroup(std::string name);
     void actualizeEFPosition();
     void checkSelfCollision();
-    bool checkGoal(geometry_msgs::Pose goal);
+    bool checkGoal();
+    void moveTo(geometry_msgs::PoseStamped goal);
     void moveTo(geometry_msgs::Pose goal);
     void moveTo(double x, double y, double z);
     void printEFPose();
@@ -33,6 +34,7 @@ class PlanningGroup {
     void setRobotState();
     void setPlanningScene();
     void setGoal(geometry_msgs::Pose goal);
+    void setGoal(geometry_msgs::PoseStamped goal);
     void setGoalPosition(double x, double y, double z);
     void setGoalPosition(tf::Vector3 pose);
     void setGoalOrientation(double x, double y, double z, double w);
