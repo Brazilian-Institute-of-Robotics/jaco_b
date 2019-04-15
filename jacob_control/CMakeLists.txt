@@ -18,7 +18,7 @@ find_package(Eigen3 REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES planning_group_LIBRARIES
-  CATKIN_DEPENDS 
+  CATKIN_DEPENDS
     #moveit_core
     #moveit_ros_planning_interface
     #interactive_markers
@@ -57,6 +57,12 @@ add_executable(moveto src/node/moveto.cpp)
 add_dependencies(moveto ${catkin_EXPORTED_TARGETS})
 target_link_libraries(moveto planning_group_LIBRARIES object_creator_LIBRARIES ${catkin_LIBRARIES})
 #install(TARGETS moveto DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+#----------------------------------- add mark_detection executable -------------------------------------------------------------#
+
+add_executable(mark_detection src/node/mark_detection.cpp)
+target_link_libraries(mark_detection planning_group_LIBRARIES object_creator_LIBRARIES ${catkin_LIBRARIES})
+
 
 install(DIRECTORY config
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
