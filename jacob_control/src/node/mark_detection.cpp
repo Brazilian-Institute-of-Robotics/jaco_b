@@ -5,7 +5,7 @@
 
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
-geometry_msgs::TransformStamped getMarkTf(){
+bool getMarkTf(){
     bool tag_exists = false;
     geometry_msgs::TransformStamped tfTag;
     tf2_ros::Buffer tfBuffer;
@@ -15,7 +15,7 @@ geometry_msgs::TransformStamped getMarkTf(){
             tag_exists = true;
             ROS_INFO("loop");
             try{
-                tfTag = tfBuffer.lookupTransform("j2n6s300_end_effector", "tag_0", ros::Time(0));
+                tfTag = tfBuffer.lookupTransform("j2n6s300_end_effector", "tag_0", ros::Time(0)); // não consigo tf entre /world e /tag_o
             }
             catch (tf2::TransformException &ex){
                 ROS_WARN("%s", ex.what());
@@ -24,7 +24,7 @@ geometry_msgs::TransformStamped getMarkTf(){
             }
         }
     }
-    return tfTag;
+    return tag_exists;
 }
 
 geometry_msgs::PoseStamped getMarkPose(geometry_msgs::TransformStamped tfTag){
@@ -49,14 +49,24 @@ int main(int argc,char** argv){
     spinner.start();
     double x, y, z;
     geometry_msgs::Pose goal;
+    goal.position.x = -0.2255;
+    goal.position.y = -0.02308;
+    goal.position.z = 0.772774;
+    goal.orientation.x = -0.0401975;
+    goal.orientation.y = -0.577613;
+    goal.orientation.z = -0.0681339;
+    goal.orientation.w = 0.812468;
+
     PlanningGroup pgroup("arm");
-    goal.position.x = -0.44;
-    goal.position.y = 0.01;
-    goal.position.z = 0.70;
-    goal.orientation.x = 0.04;
-    goal.orientation.y = -0.58;
-    goal.orientation.z = 0.004;
-    goal.orientation.w = 0.811;
+    pgroup.moveTo(goal);
+
+    goal.position.x = -0.10;
+    goal.position.y = -0.1;
+    goal.position.z = 0.6;
+    goal.orientation.x = -0.0401975;
+    goal.orientation.y = -0.577613;
+    goal.orientation.z = -0.0681339;
+    goal.orientation.w = 0.812468;
     //pgroup._goal.position = getMarkPose(getMarkTf()).pose.position;
     //pgroup._goal.orientation = getMarkPose(getMarkTf()).pose.orientation;
     pgroup.printGoalPosition();
@@ -68,7 +78,9 @@ int main(int argc,char** argv){
  
 
     //pgroup.setGoal(getMarkPose(getMarkTf()));
-
+    if(getMarkTf()){
+        pgroup.moveTo(goal);
+    }
     pgroup.moveTo(goal);
     pgroup.actualizeEFPosition();
     pgroup.printEFPose();
