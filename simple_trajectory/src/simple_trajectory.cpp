@@ -3,6 +3,7 @@
 #include <actionlib/client/simple_action_client.h>
 #include <std_msgs/Float64MultiArray.h>
 
+
 typedef actionlib::SimpleActionClient< control_msgs::FollowJointTrajectoryAction > TrajectoryClient;
 
 
@@ -13,6 +14,7 @@ class RobotArm
     ros::Subscriber _joint_sub;
     ros::NodeHandle _nh;
     float _joint_position[7];
+    float _joint_velocity[7];
 
     public:
     RobotArm()
@@ -31,11 +33,12 @@ class RobotArm
         delete _traj_client;
     }
 
-    void joint_callback(const std_msgs::Float64MultiArray &msg)
+    void joint_callback(const trajectory_msgs::JointTrajectoryPoint &msg)
     {
         for (int i = 0; i<7; i++)
         {
-            _joint_position[i] = msg.data[i];
+            _joint_position[i] = msg.positions[i];
+            _joint_velocity[i] = msg.velocities[i];
             ROS_INFO("joint = %f", _joint_position[i]);
 
         }
@@ -63,21 +66,19 @@ class RobotArm
 
         goal.trajectory.points.resize(1);
 
+        //Positions
         goal.trajectory.points[0].positions.resize(6);
-        goal.trajectory.points[0].positions[0] = _joint_position[0];
-        goal.trajectory.points[0].positions[1] = _joint_position[1];
-        goal.trajectory.points[0].positions[2] = _joint_position[2];
-        goal.trajectory.points[0].positions[3] = _joint_position[3];
-        goal.trajectory.points[0].positions[4] = _joint_position[4];
-        goal.trajectory.points[0].positions[5] = _joint_position[5];
-        goal.trajectory.points[0].positions[6] = _joint_position[6];        
+        for (size_t i=0; i <6; ++i)
+        {
+            goal.trajectory.points[0].positions[i] = _joint_position[i];
+        }      
 
-        //velocities
+        //Velocities
         goal.trajectory.points[0].velocities.resize(6);
 
         for (size_t j=0; j <6; ++j)
         {
-            goal.trajectory.points[0].velocities[j] =0.0;
+            goal.trajectory.points[0].velocities[j] = _joint_velocity[j];
         }
         //to be reached 2 second after starting
         goal.trajectory.points[0].time_from_start = ros::Duration(0.02);
